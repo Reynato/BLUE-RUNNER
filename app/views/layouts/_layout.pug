@@ -1,0 +1,58 @@
+block mainVars
+
+doctype
+html(lang="ja")
+  head
+    meta(charset="utf-8")
+    meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no')
+
+    - title = "タイトル";
+    - description = "ディスクリプション";
+    - site_url = "http://localhost:9000";
+    - og_image = site_url + "/ogp.jpg";
+    - color = "#ffffff";
+
+    title=title
+
+    meta(name="description" content=description)
+
+    meta(property="og:locale" content="ja_JP")
+    meta(property="og:title" content=title)
+    meta(property="og:type" content="website")
+    meta(property="og:url" content=site_url)
+    meta(property="og:description" content=description)
+    meta(property="og:site_name" content=title)
+    meta(property="og:image" content=og_image)
+    meta(property="og:image:secure_url" content=og_image)
+    meta(property="og:image:width" content="1200")
+    meta(property="og:image:height" content="620")
+    meta(name="twitter:card" content="summary_large_image")
+    meta(name="twitter:description" content=description)
+    meta(name="twitter:title" content=title)
+    meta(name="twitter:image" content=og_image)
+
+    //- link(rel="apple-touch-icon" sizes="180x180" href=`${site_url}/favicon/apple-icon-180x180.png`)
+    //- link(rel="icon" type="image/png" sizes="192x192" href=`${site_url}/favicon/android-icon-192x192.png`)
+    //- link(rel="icon" type="image/png" sizes="96x96" href=`${site_url}/favicon/favicon-96x96.png`)
+    link(rel="icon" type="image/x-icon" href=`${site_url}/favicon/favicon.ico`)
+    link(rel="shortcut icon" type="image/x-icon" href=`${site_url}/favicon/favicon.ico`)
+    //- link(rel="manifest" href=`${site_url}/favicon/manifest.json`)
+    //- meta(name="msapplication-TileImage" content=`${site_url}/favicon/ms-icon-144x144.png`)
+    meta(name="msapplication-TileColor" content=color)
+    meta(name="theme-color" content=color)
+
+    //- link(rel="preconnect" href="https://fonts.gstatic.com")
+    link(rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap")
+    link(rel="stylesheet" href="/assets/stylesheets/application.css")
+
+  body
+
+    include ../shared/_mixin
+    
+    include _header
+    main.l-content
+      block content
+      include _footer
+
+    script(src="https://polyfill.io/v2/polyfill.min.js?features=IntersectionObserver")
+    script(src="/assets/javascripts/application.js")

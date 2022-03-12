@@ -1,0 +1,36 @@
+{
+  "name": "gulp-task",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "npm-run-all -p task:*",
+    "task:server": "browser-sync start -s dist -w dist/*.html dist/css/*.css dist/js/*.js",
+    "task:sass": "sass app/assets/stylesheets/:dist/assets/stylesheets/ --no-source-map --watch",
+    "task:pug": "pug app/views/ --hierarchy -o dist/ -w -P",
+    "task:js": "watch 'npm run js' ./app/assets/javascripts",
+    "js": "npm-run-all -s js:*",
+    "js:babel": "./node_modules/.bin/babel ./app/assets/javascripts --out-dir ./dist/assets/javascripts",
+    "js:uglifyjs": "uglifyjs dist/assets/javascripts/application.js -o dist/assets/javascripts/application.js",
+    "task:static": "cpx 'app/static/**' dist -C -w",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "pug-cli": "github:pugjs/pug-cli#master",
+    "sass": "^1.49.9"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.17.6",
+    "@babel/core": "^7.17.5",
+    "@babel/preset-env": "^7.16.11",
+    "browser-sync": "^2.27.7",
+    "cpx": "^1.5.0",
+    "npm-run-all": "^4.1.5",
+    "pug": "^3.0.2",
+    "uglify-js": "^3.15.3",
+    "watch": "^1.0.2"
+  }
+}

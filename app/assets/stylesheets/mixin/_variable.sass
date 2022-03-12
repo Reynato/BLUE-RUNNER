@@ -1,0 +1,161 @@
+$sp-size: "(max-width: 750px)"
+$pc-size: "(min-width: 751px)"
+$pc-sm-size: "(max-width: 992px)"
+$pc-md-size: "(max-width: 1200px)"
+$pc-lg-size: "(max-width: 1580px)"
+
+$sp-over-size: "(min-width: 751px)"
+
+$pc-sm-over-size: "(min-width: 993px)"
+$pc-md-over-size: "(min-width: 1201px)"
+$pc-lg-over-size: "(min-width: 1581px)"
+
+$pc-sm-only-size: "(min-width: 751px) and (max-width: 992px)"
+$pc-md-only-size: "(min-width: 993px) and (max-width: 1200px)"
+$pc-lg-only-size: "(min-width: 1201px) and (max-width: 1580px)"
+
+=custom-view($size)
+  +respond-to("(max-width: #{$size})")
+    @content
+
+=respond-to($media)
+  @media #{$media}
+    @content
+
+=sp-view
+  +respond-to($sp-size)
+    @content
+
+=tablet-size
+  +respond-to("(max-width: 770px)")
+    @content
+
+=pc-view
+  +respond-to($pc-size)
+    @content
+
+=pc-sm-view
+  +respond-to($pc-sm-size)
+    @content
+=pc-md-view
+  +respond-to($pc-md-size)
+    @content
+=pc-lg-view
+  +respond-to($pc-lg-size)
+    @content
+
+=sp-view-over
+  +respond-to($sp-over-size)
+    @content
+
+=pc-sm-view-over
+  +respond-to($pc-sm-over-size)
+    @content
+=pc-md-view-over
+  +respond-to($pc-md-over-size)
+    @content
+=pc-lg-view-over
+  +respond-to($pc-lg-over-size)
+    @content
+
+=pc-sm-view-only
+  +respond-to($pc-sm-only-size)
+    @content
+=pc-md-view-only
+  +respond-to($pc-md-only-size)
+    @content
+=pc-lg-view-only
+  +respond-to($pc-lg-only-size)
+    @content
+
+=ie-view
+  @media all and (-ms-high-contrast: none)
+    @content
+
+=safari-view
+  _::-webkit-full-page-media, _:future, :root &
+    @content
+
+=hover
+  @media(hover: hover)
+    @content
+
+=box-sizing
+  -webkit-box-sizing: border-box
+  -moz-box-sizing:    border-box
+  box-sizing:         border-box
+  // *behavior: url('../js/boxsizing.htc')
+
+
+=gap-right($i:1rem)
+  display: flex
+  flex-direction: row
+  gap: $i
+  +ie-view
+    & > *
+      margin-right: $i
+      &:last-child
+        margin-right: 0px
+
+=gap-bottom($i:1rem)
+  display: flex
+  flex-direction: column
+  gap: $i
+  +ie-view
+    & > *
+      margin-bottom: $i
+      &:last-child
+        margin-bottom: 0px
+
+=full-size
+  height: 100%
+  width: 100%
+
+=full-screen
+  height: 100vh
+  width: 100vw
+
+=fit-size
+  height: fit-content
+  width: fit-content
+
+=flex-middle
+  display: flex
+  justify-content: center
+  align-items: center
+
+=absolute-middle
+  position: absolute
+  inset: 0
+  margin: auto
+  +ie-view
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+
+=default-width($margin:6%,$width:1920px)
+  max-width: $width
+  width: 100%
+  left: 0
+  right: 0
+  margin-left: auto
+  margin-right: auto
+  box-sizing: border-box
+  padding-left: $margin
+  padding-right: $margin
+  +sp-view
+    max-width: 100%
+    padding-left: 25px
+    padding-right: 25px
+
+=text-outline($color: var(--color-dark-blue))
+  color: var(--color-cream)
+  -webkit-text-stroke: 1px $color
+  -webkit-text-fill-color: transparent
+
+=image-crop
+  width: auto
+  height: auto
+  max-width: 100%
+  max-height: 100%

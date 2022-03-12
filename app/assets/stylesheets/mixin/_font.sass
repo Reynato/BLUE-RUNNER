@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&display=swap')
+$family: "YakuHanJP", "游ゴシック体", YuGothic, "游ゴシック", "Yu Gothic",selif
+$family-en: 'Barlow', "YakuHanJP",selif
+
+=text($type:regular, $fs:14px, $lang:ja)
+  font-size: $fs
+  font-family: $family
+  line-height: 150%
+  // letter-spacing: 0.1em
+  @if $type == light
+    font-weight: 300
+  @else if $type == regular
+    font-weight: 400
+  @else if $type == medium
+    font-weight: 500
+  @else if $type == semibold
+    font-weight: 600
+  @else if $type == bold
+    font-weight: 700
+  @if $lang == en
+    font-family: $family-en
+    // letter-spacing: 0.05em
+
+body
+  *
+    font-family: $family
+    +text(medium,18px)
+    color: var(--color-black-200)
+    @media (max-width: 750px)
+      +text(medium,14px)
