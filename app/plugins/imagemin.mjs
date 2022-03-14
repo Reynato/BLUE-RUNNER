@@ -5,7 +5,7 @@ import imageminGifsicle from "imagemin-gifsicle";
 import imageminSvgo from "imagemin-svgo";
 
 const files = await imagemin(["./app/static/**/*.{jpg,png,gif,svg}"], {
-  destination: "../hoge",
+  destination: "./hoge",
   plugins: [
     imageminMozjpeg({ quality: 80 }),
     imageminPngquant({ quality: [0.6, 0.8] }),
