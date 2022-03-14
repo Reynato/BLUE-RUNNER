@@ -4,7 +4,7 @@ import imageminPngquant from "imagemin-pngquant";
 import imageminGifsicle from "imagemin-gifsicle";
 import imageminSvgo from "imagemin-svgo";
 
-imagemin(["static/**/*.{jpg,png,gif,svg}"], {
+imagemin(["./app/static/**/*.{jpg,png,gif,svg}"], {
   destination: "./build/images",
   plugins: [
     imageminMozjpeg({ quality: 80 }),
