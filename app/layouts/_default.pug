@@ -1,5 +1,4 @@
-block mainVars
-
+//- block mainVars
 doctype
 html(lang="ja")
   head
@@ -40,19 +39,14 @@ html(lang="ja")
     //- meta(name="msapplication-TileImage" content=`${site_url}/favicon/ms-icon-144x144.png`)
     meta(name="msapplication-TileColor" content=color)
     meta(name="theme-color" content=color)
-
     //- link(rel="preconnect" href="https://fonts.gstatic.com")
     link(rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap")
     link(rel="stylesheet" href="/assets/stylesheets/application.css")
 
   body
-
-    include ../shared/_mixin
-    
-    include _header
+    //- include ../shared/_mixin
+    //- include _header
     main.l-content
       block content
-      include _footer
-
     script(src="https://polyfill.io/v2/polyfill.min.js?features=IntersectionObserver")
     script(src="/assets/javascripts/application.js")
