@@ -1,5 +1,6 @@
 html
   font-size: 4px
+  font-feature-settings: "palt" 1
 
 html,body
   min-height: 100vh
@@ -38,14 +39,6 @@ button
   min-height: 100vh
   overflow: hidden
 
-.scrollbar-track
-  background: transparent !important
-  width: 1rem !important
-  .scrollbar-thumb
-    border-radius: 0px
-    background: #ffffff
-    transition: height .5s ease-in
-
 .index
   overscroll-behavior: none
   position: fixed
@@ -58,15 +51,3 @@ button
   overflow: hidden
   &>body
     @extend .index
-
-.scroll-paper
-  +full-screen
-
-.scrollbar-track
-  mix-blend-mode: difference
-  background: transparent !important
-  width: 1rem !important
-  .scrollbar-thumb
-    border-radius: 0px
-    background: #ffffff
-    transition: height .5s ease-in

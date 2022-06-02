@@ -14,6 +14,8 @@ $pc-sm-only-size: "(min-width: 751px) and (max-width: 992px)"
 $pc-md-only-size: "(min-width: 993px) and (max-width: 1200px)"
 $pc-lg-only-size: "(min-width: 1201px) and (max-width: 1580px)"
 
+
+
 =custom-view($size)
   +respond-to("(max-width: #{$size})")
     @content
@@ -80,32 +82,67 @@ $pc-lg-only-size: "(min-width: 1201px) and (max-width: 1580px)"
   @media(hover: hover)
     @content
 
+=old-safari
+  @supports not (aspect-ratio: 16/9)
+    @content
+    
+=not-last
+  &:not(&:last-child)
+    @content
+
+=no-scrollbar
+  -ms-overflow-style: none
+  scrollbar-width: none
+  &::-webkit-scrollbar
+    display: none 
+
 =box-sizing
   -webkit-box-sizing: border-box
   -moz-box-sizing:    border-box
   box-sizing:         border-box
-  // *behavior: url('../js/boxsizing.htc')
 
+=margin-gap($direction: right, $num:1rem, $childType: last-child)
+  gap: 0px
+  & > *:not(:#{$childType})
+    @if $direction == right
+      margin-right: $num
+    @else if $direction == bottom
+      margin-bottom: $num
 
-=gap-right($i:1rem)
+=gap($direction: right, $num: 1rem, $reverce: none)
   display: flex
-  flex-direction: row
-  gap: $i
-  +ie-view
-    & > *
-      margin-right: $i
-      &:last-child
-        margin-right: 0px
+  @if $direction == right
+    @if $reverce == reverse
+      flex-direction: row-reverse
+      gap: $num
+      @supports not (aspect-ratio: 16/9)
+        +margin-gap(right, $num, first-child)
+      +ie-view
+        +margin-gap(right, $num, first-child)
+    @else
+      flex-direction: row
+      gap: $num
+      @supports not (aspect-ratio: 16/9)
+        +margin-gap(right, $num, last-child)
+      +ie-view
+        +margin-gap(right, $num, last-child)
 
-=gap-bottom($i:1rem)
-  display: flex
-  flex-direction: column
-  gap: $i
-  +ie-view
-    & > *
-      margin-bottom: $i
-      &:last-child
-        margin-bottom: 0px
+  @else if $direction == bottom
+    @if $reverce == reverse
+      flex-direction: column-reverse
+      gap: $num
+      @supports not (aspect-ratio: 16/9)
+        +margin-gap(bottom, $num, first-child)
+      +ie-view
+        +margin-gap(bottom, $num, first-child)
+
+    @else
+      flex-direction: column
+      gap: $num
+      @supports not (aspect-ratio: 16/9)
+        +margin-gap(bottom, $num, last-child)
+      +ie-view
+        +margin-gap(bottom, $num, last-child)
 
 =full-size
   height: 100%
@@ -128,13 +165,8 @@ $pc-lg-only-size: "(min-width: 1201px) and (max-width: 1580px)"
   position: absolute
   inset: 0
   margin: auto
-  +ie-view
-    top: 0
-    left: 0
-    right: 0
-    bottom: 0
 
-=default-width($margin:6%,$width:1920px)
+=default-width($margin:150px,$width:1500px)
   max-width: $width
   width: 100%
   left: 0
@@ -144,10 +176,27 @@ $pc-lg-only-size: "(min-width: 1201px) and (max-width: 1580px)"
   box-sizing: border-box
   padding-left: $margin
   padding-right: $margin
+  +pc-sm-view
+    padding-left: 80px
+    padding-right: 80px
   +sp-view
     max-width: 100%
-    padding-left: 25px
-    padding-right: 25px
+    padding-left: 24px
+    padding-right: 24px
+
+=default-padding($margin)
+  width: 100vw
+  padding-left: $margin
+  padding-right: $margin
+  +pc-sm-view
+    padding-left: 24rem
+    padding-right: 24rem
+
+=default-max($margin: var(--margin-2))
+  max-width: calc(100vw - $margin * 2)
+  width: 100%
+  margin-left: auto
+  margin-right: auto
 
 =text-outline($color: var(--color-dark-blue))
   color: var(--color-cream)
@@ -159,3 +208,75 @@ $pc-lg-only-size: "(min-width: 1201px) and (max-width: 1580px)"
   height: auto
   max-width: 100%
   max-height: 100%
+
+=test-border($color: red)
+  border: 1px solid $color
+
+=size($width: auto, $height: $width)
+  width: $width
+  height: $height
+
+=text-overflow($num: 1)
+  text-overflow: ellipsis
+  overflow: hidden
+  @if $num == 1
+    white-space: nowrap
+  @if $num != 1
+    display: -webkit-box
+    -webkit-line-clamp: 1
+    -webkit-box-orient: vertical
+    text-overflow: ellipsis
+
+=text-inherit
+  font-size: inherit
+  font-family: inherit
+  font-weight: inherit
+  line-height: inherit
+  color: inherit
+  letter-spacing: inherit
+
+
+=aspect-ratio($width, $height, $max-width: none)
+  position: relative
+  @if ($max-width != 'none')
+    max-width: $max-width + px
+  &::before
+    float: left
+    content: ""
+    padding-top: calc(($height / $width) * 100% * 100 / 100)
+  &::after
+    display: block
+    content: ""
+    clear: both
+  > *
+    position: absolute
+    inset: 0
+    width: 100%
+    height: 100%
+    object-fit: cover
+
+=button-height($height, $top: 0rem)
+  padding-top: $top
+  &:before
+    content: ""
+    display: inline-block
+    height: calc($height - $top)
+    padding-top: $top
+    vertical-align: middle
+
+=hover-button($diff: white)
+  cursor: pointer
+  transition: background 0.5s ease, color 0.5s ease, border 0.5s ease,
+  &:hover
+    background: var(--color-white-100)
+    color: var(--color-blue-100)
+    border: 1rem solid var(--color-blue-100)
+    @if $diff == blue
+      background: var(--color-blue-100)
+      color: var(--color-white-100)
+      border: 1rem solid var(--color-white-100)
+    
+    
+=sp-max-height
+  height: 100vh
+  max-height: 880px
