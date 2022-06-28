@@ -1,29 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&display=swap')
-$family: 'Noto Sans JP', "游ゴシック体", YuGothic, "游ゴシック", "Yu Gothic",selif
+@function fvw($fs: 14, $base: 1366)
+  $no_unit_size: calc($fs / ($fs * 0 + 1px))
+  $base_size: calc(100 / $base)
+  @return $base_size * $no_unit_size * 1vw
 
-=text($type:regular, $fs:14px, $lang:ja)
+@function base-vw-num($fs: 14, $base: 1366)
+  $no_unit_size: calc($fs / ($fs * 0 + 1px))
+  $base_size: calc(100 / $base)
+  @return $base_size * $no_unit_size * 1vw
+
+$family: YakuHanJP_Narrow, "Yu Gothic Medium", "Yu Gothic", YuGothic,'A+EqpB-游ゴシック体 Pr6N M', selif
+
+$weightMap: (regular: 400,medium: 500,bold: 700,black: 900) 
+
+=text($fs:14rem, $weight:regular,  $fam:$family)
   font-size: $fs
-  font-family: $family
-  line-height: 150%
-  // letter-spacing: 0.1em
-  @if $type == light
-    font-weight: 300
-  @else if $type == regular
-    font-weight: 400
-  @else if $type == medium
-    font-weight: 500
-  @else if $type == semibold
-    font-weight: 600
-  @else if $type == bold
-    font-weight: 700
-  @if $lang == en
-    font-family: $family-en
-    // letter-spacing: 0.05em
-
-body
-  *
-    font-family: $family
-    +text(medium,18px)
-    color: var(--color-black-200)
-    @media (max-width: 750px)
-      +text(medium,14px)
+  font-family: $fam
+  font-weight: map-get($weightMap, $weight)

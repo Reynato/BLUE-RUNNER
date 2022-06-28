@@ -1,53 +1,108 @@
+:root
+  --margin-1: 40rem
+  --margin-2: 80rem
+  --margin-3: 120rem
+  --margin-4: 160rem
+  --margin-5: 200rem
+  --margin-6: 240rem
+  +pc-sm-view
+    --margin-1: 16rem
+    --margin-2: 24rem
+    --margin-3: 36rem
+    --margin-4: 57.5rem
+    --margin-5: 16rem
+    --margin-6: 16rem
+  
 html
-  font-size: 4px
+  background: var(--color-blue-100)
+  min-height: 100%
   font-feature-settings: "palt" 1
-
+  +pc-sm-view-over
+    font-size: fvw(1px, 1440)
+  +pc-sm-view 
+    font-size: fvw(1px,992)
+  +sp-view
+    font-size: fvw(1px,390)
+    
+    
 html,body
-  min-height: 100vh
   max-width: 100vw
-  overflow-x: hidden
-  background: #FFFFFF
+  color: var(--color-blue-100)
   ::selection
     background: var(--select-fill-color)
     color: var(--select-text-color)
   ::-moz-selection
     background: var(--select-fill-color)
     color: var(--select-text-color)
+  
+
+body
+  color: var(--color-black-100)
+  font-family: $family
+
+span, div
+  font-size: inherit
+  font-family: inherit
+  font-weight: inherit
+  line-height: inherit
+  color: inherit
+  letter-spacing: inherit
 
 img
   object-fit: cover
+  pointer-events: none
+  touch-callout: none
+  user-select: none
+  user-drag: none
+  border-radius: inherit
 
+video
+  max-width: 100vw
+  ovject-fit: cover
+
+picture
+  display: block
+  source,img
+    width: 100%
+    height: 100%
+    
 a
   cursor: pointer
+  line-height: 1
+
+p
+  text-align: justify
 
 button
   position: relative
   width: fit-content
   &::after
     content: ""
-    // border: 1px solid red
     position: absolute
     top: 50%
     left: 50%
     transform: translate(-50%, -50%)
     height: calc(100% + 22px)
     width: calc(100% + 22px)
-    // max-height: 44px
-    // max-width: 44px
 
 .container
   min-height: 100vh
-  overflow: hidden
+  position: relative
+  max-width: 100vw
+  overflow-x: hidden
+  background: var(--color-white-100)
 
 .index
-  overscroll-behavior: none
   position: fixed
-  top: 0
-  left: 0
-  right: 0
-  bottom: 0
-  width: 100%
-  height: 100vh
+  inset: 0
   overflow: hidden
-  &>body
-    @extend .index
+  overscroll-behavior: none
+
+
+[pc-only]
+  +pc-sm-view
+    display: none !important
+[sp-only]
+  +pc-sm-view-over
+    display: none !important
+
