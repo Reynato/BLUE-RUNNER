@@ -7,7 +7,7 @@ import { GSDevTools } from "gsap/GSDevTools";
 import { SplitText } from "gsap/SplitText";
 import { MorphSVGPlugin } from "gsap/MorphSVGPlugin";
 import { CustomEase } from "gsap/CustomEase";
-import { $, $$, cssVal, spView, setAttr, removeAttr } from "../global.js";
+import { $, $$, cssVal, spView } from "../global.js";
 
 gsap.registerPlugin(ScrollTrigger, DrawSVGPlugin, ScrollToPlugin, GSDevTools, SplitText, MorphSVGPlugin, CustomEase);
 
