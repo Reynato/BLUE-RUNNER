@@ -17,7 +17,7 @@
     "generate:pug": "pug app/pages/ --hierarchy -o dist/ -P",
     "generate:style": "npm-run-all -s style:*",
     "style:sass": "sass app/assets/stylesheets/:dist/assets/stylesheets/ --style expanded",
-    "style:autprefixer": "postcss --use autoprefixer -b 'last 2 versions ie >= 11 Android >= 7 last 3 iOS major versions' dist/assets/stylesheets/application.css -o dist/assets/stylesheets/application.css",
+    "style:postcss": "postcss dist/assets/stylesheets/application.css -o dist/assets/stylesheets/application.css",
     "generate:js": "npx rollup --config rollup.config.js --format iife --file dist/assets/javascripts/application.min.js",
     "generate:static": "cpx 'app/static/**' dist",
     "generate:basic": "cpx 'app/assets/javascripts/basicAuth.js' dist/assets/javascripts && uglifyjs -c -o ./dist/assets/javascripts/basicAuth.min.js ./dist/assets/javascripts/basicAuth.js",
@@ -37,6 +37,12 @@
     "scrollbooster": "^3.0.2",
     "zingtouch": "^1.0.6"
   },
+  "browserslist": [
+    "last 2 versions",
+    "ie >= 11",
+    "Android >= 7",
+    "last 3 iOS major versions"
+  ],
   "devDependencies": {
     "@babel/cli": "^7.17.6",
     "@babel/core": "^7.17.7",
@@ -45,6 +51,7 @@
     "babel-preset-es2015-rollup": "^3.0.0",
     "browser-sync": "^2.27.7",
     "cpx": "^1.5.0",
+    "flex-gap-polyfill": "^4.1.0",
     "imagemin": "^8.0.1",
     "imagemin-gifsicle": "^7.0.0",
     "imagemin-keep-folder": "^5.3.2",
@@ -52,8 +59,9 @@
     "imagemin-pngquant": "^9.0.2",
     "imagemin-svgo": "^10.0.1",
     "npm-run-all": "^4.1.5",
-    "postcss": "^8.4.12",
+    "postcss": "^8.4.16",
     "postcss-cli": "^9.1.0",
+    "postcss-logical": "^5.0.4",
     "pug": "^3.0.2",
     "rimraf": "^3.0.2",
     "rollup": "^2.70.1",
