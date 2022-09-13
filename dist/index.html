@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <title>タイトル</title>
+    <meta name="description" content="ディスクリプション">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:title" content="タイトル">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="http://localhost:3000">
+    <meta property="og:description" content="ディスクリプション">
+    <meta property="og:site_name" content="タイトル">
+    <meta property="og:image" content="http://localhost:3000/ogp.jpg">
+    <meta property="og:image:secure_url" content="http://localhost:3000/ogp.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="620">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:description" content="ディスクリプション">
+    <meta name="twitter:title" content="タイトル">
+    <meta name="twitter:image" content="http://localhost:3000/ogp.jpg">
+    <link rel="icon" type="image/x-icon" href="http://localhost:3000/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="http://localhost:3000/favicon/favicon.ico">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/stylesheets/application.css">
+    <script src="./assets/javascripts/basicAuth.min.js"></script>
+  </head>
+  <body>
+    <main class="l-content">
+      <div class="p-index" top-page>
+        <div class="tutorial"><h1>task-runner</h1>
+<p>これは reynato.tokyo のエンジニアが開発した静的ページ納品用のタスクランナーです。
+node のバージョンに依存しないように npm scripts で開発されました。</p>
+<p>これはあくまでテンプレートです。このコードを用いる時は</p>
+<pre><code>cd 開発するフォルダ
+git pull https://github.com/Reynato/task-runner.git
+</code></pre>
+<p>かリポジトリのページで zip をダウンロードしてください。
+絶対このリポジトリにプロジェクトをプッシュしないでください。</p>
+<h2>npm のバージョン</h2>
+<p>インストールには<code>npm</code>の v8〜を使用していますが、<code>yarn</code>でも構いません。<code>pnpm</code>は動作未検証です。</p>
+<h2>node のバージョン</h2>
+<p>node のバージョンは<code>v16.14.0</code>を使用してください。nodenv を使用しているならそのまま使っていただいても大丈夫です。</p>
+<h2>起動方法</h2>
+<p><code>npm install</code>をしてください。依存解決の記述が出力されますが基本的にはそのままで大丈夫です。
+<code>npm install</code>が終わったら<code>npm run dev</code>でサーバーが動きます。
+サーバーが立ち上がると<code>/dist</code>に自動で生成されます。</p>
+
+        </div>
+      </div>
+    </main>
+    <script src="https://polyfill.io/v2/polyfill.min.js?features=IntersectionObserver"></script>
+    <script src="/assets/javascripts/application.min.js"></script>
+  </body>
+</html>
