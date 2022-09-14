@@ -715,6 +715,7 @@ button::after {
   font-size: 27rem;
   font-family: YakuHanJP_Narrow, "Yu Gothic Medium", "Yu Gothic", YuGothic, "A+EqpB-游ゴシック体 Pr6N M", selif;
   font-weight: 700;
+  opacity: 1;
 }
 .tutorial h2 > *{
 	/* added by fgp */

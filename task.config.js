@@ -10,8 +10,11 @@ const rollup = require("rollup");
 const { nodeResolve } = require("@rollup/plugin-node-resolve");
 const commonjs = require("rollup-plugin-commonjs");
 const { terser } = require("rollup-plugin-terser");
+const program = require("commander");
+const browserSync = require("browser-sync");
 
 const src = {
+  root: "./app",
   pug: "./app/pages",
   sass: "./app/assets/stylesheets",
   static: "./app/static",
@@ -24,17 +27,63 @@ const dist = {
   js: "./dist/assets/javascripts",
 };
 
-class Generate {
+class Task {
   constructor() {
-    this.processBar();
+    program
+      .version("0.0.1")
+      .usage("[options]")
+      .option("-ge, --generate", "Generate static files", () => {
+        this.generate();
+        return;
+      })
+      .option("-w, --watch", "Watch files", () => {
+        this.generate();
+
+        setTimeout(() => {
+          this.watch();
+        }, 1000);
+        return;
+      })
+      .parse(process.argv);
+  }
+  generate() {
     this.rmDist();
     this.mkDist();
     this.cpStatic();
     this.compilePug();
     this.compileSass();
-    this.compileJavaScripts();
+    this.compileJs();
   }
+  watch() {
+    const bs = browserSync.create();
+    bs.init({
+      server: {
+        baseDir: dist.root,
+        index: "index.html",
+      },
+      open: false,
+    });
+    bs.watch(`${dist.root}/**/*`).on("change", () => {
+      bs.reload();
+    });
 
+    let fsTimeout = null;
+    fs.watch(src.root, { persistent: true, recursive: true }, (eventType, filename) => {
+      if (!fsTimeout) {
+        console.log("\n");
+        console.log("\u001b[35m%s\x1b[0m", `${eventType}, ${filename}`);
+
+        if (filename.match(/\.pug$/)) this.compilePug();
+        if (filename.match(/\.sass$/)) this.compileSass();
+        if (filename.match(/\.js$/)) this.compileJs();
+        if (filename.match(/static/)) this.cpStatic();
+
+        fsTimeout = setTimeout(function () {
+          fsTimeout = null;
+        }, 1000);
+      }
+    });
+  }
   processBar() {
     // this.bar = new cliProgress.SingleBar({}, cliProgress.Presets.shades_classic);
     // this.bar.start(100, 0);
@@ -62,14 +111,20 @@ class Generate {
     fs.readdir(src.pug, (err, files) => {
       if (err) throw err;
       files.forEach((file) => {
-        const html = pug.renderFile(`${src.pug}/${file}`);
-        fs.writeFile(`${dist.html}/${file.replace(/\.pug$/, ".html")}`, html, (err) => {
-          if (err) throw err;
-          console.log(`Generate ${file.replace(/\.pug$/, ".html")}`);
-
-          const htmlFile = file.replace(/\.pug$/, ".html");
-          this.prettierHtml(`${dist.html}/${htmlFile}`);
-          // this.bar.update(50);
+        const html = pug.renderFile(`${src.pug}/${file}`, (err, html) => {
+          if (err === null) {
+            fs.writeFile(`${dist.html}/${file.replace(/\.pug$/, ".html")}`, html, (err) => {
+              if (err) throw err;
+              console.log(`Generate ${file.replace(/\.pug$/, ".html")}`);
+              const htmlFile = file.replace(/\.pug$/, ".html");
+              this.prettierHtml(`${dist.html}/${htmlFile}`);
+            });
+          } else {
+            console.clear();
+            console.log("\n\nPug Error --------------");
+            console.log(err);
+            console.log("-------------------------\n\n");
+          }
         });
       });
     });
@@ -86,8 +141,6 @@ class Generate {
         if (err) throw err;
         console.log(`Prettier ${file}`);
       });
-      // this.bar.update(100);
-      // this.bar.stop();
     });
   }
   compileSass() {
@@ -96,15 +149,26 @@ class Generate {
         if (err) throw err;
         files.forEach((file) => {
           if (!file.match(/\.sass$/)) return;
-          console.log(file);
-          const css = sass.renderSync({
-            file: `${src.sass}/${file}`,
-          });
-          fs.writeFile(`${dist.css}/${file.replace(/\.sass$/, ".css")}`, css.css, (err) => {
-            if (err) throw err;
-            console.log(`Generate ${file.replace(/\.sass$/, ".css")}`);
-            this.postCssWrite(`${dist.css}/${file.replace(/\.sass$/, ".css")}`);
-          });
+
+          const css = sass.render(
+            {
+              file: `${src.sass}/${file}`,
+            },
+            (err, css) => {
+              if (err) {
+                console.clear();
+                console.log("\n\nSass Error --------------");
+                console.log(err.formatted);
+                console.log("-------------------------\n\n");
+              } else {
+                fs.writeFile(`${dist.css}/${file.replace(/\.sass$/, ".css")}`, css.css, (err) => {
+                  if (err) throw err;
+                  console.log(`Generate ${file.replace(/\.sass$/, ".css")}`);
+                  this.postCssWrite(`${dist.css}/${file.replace(/\.sass$/, ".css")}`);
+                });
+              }
+            }
+          );
         });
       });
     });
@@ -127,7 +191,7 @@ class Generate {
         });
     });
   }
-  compileJavaScripts() {
+  compileJs() {
     makeDir(dist.js).then((path) => {
       fs.readdir(`${src.js}/`, (err, files) => {
         if (err) throw err;
@@ -150,6 +214,11 @@ class Generate {
               format: "cjs",
             });
             console.log(`Generate ${file}`);
+          }).catch((err) => {
+            console.clear();
+            console.log("\n\nJavaScript Error --------");
+            console.log(err);
+            console.log("-------------------------\n\n");
           });
         });
       });
@@ -157,4 +226,4 @@ class Generate {
   }
 }
 
-const generate = new Generate();
+const task = new Task();
