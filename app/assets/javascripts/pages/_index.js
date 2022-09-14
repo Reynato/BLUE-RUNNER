@@ -7,9 +7,17 @@ import { GSDevTools } from "gsap/GSDevTools";
 import { SplitText } from "gsap/SplitText";
 import { MorphSVGPlugin } from "gsap/MorphSVGPlugin";
 import { CustomEase } from "gsap/CustomEase";
-import { $, $$, cssVal, spView } from "../global.js";
+import { $, $$, cssVal, spView } from "../_global.js";
 
-gsap.registerPlugin(ScrollTrigger, DrawSVGPlugin, ScrollToPlugin, GSDevTools, SplitText, MorphSVGPlugin, CustomEase);
+gsap.registerPlugin(
+  ScrollTrigger,
+  DrawSVGPlugin,
+  ScrollToPlugin,
+  GSDevTools,
+  SplitText,
+  MorphSVGPlugin,
+  CustomEase
+);
 
 class App {
   constructor() {}
