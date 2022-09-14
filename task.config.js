@@ -73,7 +73,7 @@ class Task {
         console.log("\n");
         console.log("\u001b[35m%s\x1b[0m", `${eventType}, ${filename}`);
 
-        if (filename.match(/\.pug$/)) this.compilePug();
+        if (filename.match(/\.pug$/)) this.compilePug(false);
         if (filename.match(/\.sass$/)) this.compileSass();
         if (filename.match(/\.js$/)) this.compileJs();
         if (filename.match(/static/)) this.cpStatic();
@@ -107,7 +107,7 @@ class Task {
   cpStatic() {
     fse.copy(src.static, dist.root).then(() => console.log("Mobved static files"));
   }
-  compilePug() {
+  compilePug(generate = true) {
     fs.readdir(src.pug, (err, files) => {
       if (err) throw err;
       files.forEach((file) => {
@@ -117,7 +117,9 @@ class Task {
               if (err) throw err;
               console.log(`Generate ${file.replace(/\.pug$/, ".html")}`);
               const htmlFile = file.replace(/\.pug$/, ".html");
-              this.prettierHtml(`${dist.html}/${htmlFile}`);
+              if (generate) {
+                this.prettierHtml(`${dist.html}/${htmlFile}`);
+              }
             });
           } else {
             console.clear();
