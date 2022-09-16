@@ -1,21 +1,20 @@
-import lottie from "lottie-web";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { DrawSVGPlugin } from "gsap/DrawSVGPlugin";
+// import { DrawSVGPlugin } from "gsap/DrawSVGPlugin";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
-import { GSDevTools } from "gsap/GSDevTools";
-import { SplitText } from "gsap/SplitText";
-import { MorphSVGPlugin } from "gsap/MorphSVGPlugin";
+// import { GSDevTools } from "gsap/GSDevTools";
+// import { SplitText } from "gsap/SplitText";
+// import { MorphSVGPlugin } from "gsap/MorphSVGPlugin";
 import { CustomEase } from "gsap/CustomEase";
-import { $, $$, cssVal, spView } from "../_global.js";
+import { $, $$, cssVal } from "../_global.js";
 
 gsap.registerPlugin(
   ScrollTrigger,
-  DrawSVGPlugin,
+  // DrawSVGPlugin,
   ScrollToPlugin,
-  GSDevTools,
-  SplitText,
-  MorphSVGPlugin,
+  // GSDevTools,
+  // SplitText,
+  // MorphSVGPlugin,
   CustomEase
 );
 

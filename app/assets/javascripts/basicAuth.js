@@ -1,5 +1,11 @@
 function basicAuth() {
-  const setPass = "reynato7";
+  const dateToYyyymmdd = (date) => {
+    let n = date.getFullYear() * 10000;
+    n += date.getMonth() * 100 + 100;
+    n += date.getDate();
+    return ("000" + n).slice(-8);
+  };
+  const setPass = "reynato" + dateToYyyymmdd(new Date());
   const whiteURL = ["http://localhost:3000"];
   const htmlElStyle = document.querySelector("html").style;
   htmlElStyle.opacity = 0;
@@ -22,6 +28,7 @@ function basicAuth() {
       htmlElStyle.opacity = 0;
       htmlElStyle.pointerEvents = "none";
       window.alert("パスワードが違います");
+      document.querySelector("html").remove();
     }
   }, 500);
 }

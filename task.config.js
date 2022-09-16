@@ -180,8 +180,7 @@ class Task {
       if (err) throw err;
       const plugins = [
         require("autoprefixer")(),
-        require("postcss-logical")(["padding-inline", "inset"]),
-        require("flex-gap-polyfill"),
+        require("postcss-logical")(["padding-inline", "margin-inline", "inset"]),
       ];
       postcss(plugins)
         .process(css, { from: file, to: file })
@@ -212,8 +211,8 @@ class Task {
           });
           js.then((bundle) => {
             bundle.write({
-              file: `${dist.js}/${file.replace(/\.js$/, ".min.js")}`,
-              format: "cjs",
+              file: `${dist.js}/${file.replace(/\.js$/, ".js")}`,
+              format: "iife",
             });
             console.log(`Generate ${file}`);
           }).catch((err) => {

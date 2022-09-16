@@ -109,48 +109,40 @@ $pc-lg-only-size: "(min-width: 1201px) and (max-width: 1580px)"
     @else if $direction == bottom
       margin-bottom: $num
 
-=gap($direction: right, $num: 1rem)
+=gap($direction: right, $num: 1rem, $reverce: none)
   display: flex
-  gap: $num
   @if $direction == right
-    flex-direction: row
+    @if $reverce == reverse
+      flex-direction: row-reverse
+      gap: $num
+      @supports not (aspect-ratio: 16/9)
+        +margin-gap(right, $num, first-child)
+      +ie-view
+        +margin-gap(right, $num, first-child)
+    @else
+      flex-direction: row
+      gap: $num
+      @supports not (aspect-ratio: 16/9)
+        +margin-gap(right, $num, last-child)
+      +ie-view
+        +margin-gap(right, $num, last-child)
+
   @else if $direction == bottom
-    flex-direction: column
+    @if $reverce == reverse
+      flex-direction: column-reverse
+      gap: $num
+      @supports not (aspect-ratio: 16/9)
+        +margin-gap(bottom, $num, first-child)
+      +ie-view
+        +margin-gap(bottom, $num, first-child)
 
-// =gap($direction: right, $num: 1rem, $reverce: none)
-//   display: flex
-//   @if $direction == right
-//     @if $reverce == reverse
-//       flex-direction: row-reverse
-//       gap: $num
-//       @supports not (aspect-ratio: 16/9)
-//         +margin-gap(right, $num, first-child)
-//       +ie-view
-//         +margin-gap(right, $num, first-child)
-//     @else
-//       flex-direction: row
-//       gap: $num
-//       @supports not (aspect-ratio: 16/9)
-//         +margin-gap(right, $num, last-child)
-//       +ie-view
-//         +margin-gap(right, $num, last-child)
-
-//   @else if $direction == bottom
-//     @if $reverce == reverse
-//       flex-direction: column-reverse
-//       gap: $num
-//       @supports not (aspect-ratio: 16/9)
-//         +margin-gap(bottom, $num, first-child)
-//       +ie-view
-//         +margin-gap(bottom, $num, first-child)
-
-//     @else
-//       flex-direction: column
-//       gap: $num
-//       @supports not (aspect-ratio: 16/9)
-//         +margin-gap(bottom, $num, last-child)
-//       +ie-view
-//         +margin-gap(bottom, $num, last-child)
+    @else
+      flex-direction: column
+      gap: $num
+      @supports not (aspect-ratio: 16/9)
+        +margin-gap(bottom, $num, last-child)
+      +ie-view
+        +margin-gap(bottom, $num, last-child)
 
 =full-size
   height: 100%
