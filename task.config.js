@@ -6,10 +6,7 @@ const cliProgress = require("cli-progress");
 const makeDir = require("make-dir");
 const postcss = require("postcss");
 const fse = require("fs-extra");
-const rollup = require("rollup");
-const { nodeResolve } = require("@rollup/plugin-node-resolve");
-const commonjs = require("rollup-plugin-commonjs");
-const { terser } = require("rollup-plugin-terser");
+const esbuild = require("esbuild");
 const program = require("commander");
 const browserSync = require("browser-sync");
 
@@ -199,28 +196,25 @@ class Task {
         files.forEach((file) => {
           if (file.match(/_/)) return;
           if (!file.match(/\.js$/)) return;
-          const js = rollup.rollup({
-            input: `${src.js}/${file}`,
-            plugins: [
-              nodeResolve({ browser: true }),
-              commonjs({
-                include: /node_modules/,
-              }),
-              terser(),
-            ],
-          });
-          js.then((bundle) => {
-            bundle.write({
-              file: `${dist.js}/${file.replace(/\.js$/, ".js")}`,
-              format: "iife",
+
+          esbuild
+            .build({
+              entryPoints: [`${src.js}/${file}`],
+              bundle: true,
+              outfile: `${dist.js}/${file.replace(/\.js$/, ".js")}`,
+            })
+            .then((res) => {
+              console.log(`Generate ${file}`);
+            })
+            .catch((err) => {
+              console.log(`Generate js file`);
+              console.clear();
+              console.log("\n\nJavaScript Error --------");
+              err.errors.forEach((item) => {
+                console.log(item.location);
+              });
+              console.log("-------------------------\n\n");
             });
-            console.log(`Generate ${file}`);
-          }).catch((err) => {
-            console.clear();
-            console.log("\n\nJavaScript Error --------");
-            console.log(err);
-            console.log("-------------------------\n\n");
-          });
         });
       });
     });
