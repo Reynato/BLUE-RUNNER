@@ -69,8 +69,7 @@ class Task {
       if (!fsTimeout) {
         console.log("\n");
         console.log("\u001b[35m%s\x1b[0m", `${eventType}, ${filename}`);
-
-        if (filename.match(/\.pug$/)) this.compilePug(false);
+        if (filename.match(/\.pug$/)) this.singleCompilePug(filename);
         if (filename.match(/\.sass$/)) this.compileSass();
         if (filename.match(/\.js$/)) this.compileJs();
         if (filename.match(/static/)) this.cpStatic();
@@ -103,6 +102,23 @@ class Task {
   }
   cpStatic() {
     fse.copy(src.static, dist.root).then(() => console.log("Mobved static files"));
+  }
+  singleCompilePug(data) {
+    const file = data.replace(/^.*[\\\/]/, "");
+    pug.renderFile(`${src.pug}/${file}`, (err, html) => {
+      if (err === null) {
+        fs.writeFile(`${dist.html}/${file.replace(/\.pug$/, ".html")}`, html, (err) => {
+          if (err) throw err;
+          console.log(`Generate ${file.replace(/\.pug$/, ".html")}`);
+          const htmlFile = file.replace(/\.pug$/, ".html");
+        });
+      } else {
+        // console.clear();
+        console.log("\n\nPug Error --------------");
+        console.log(err);
+        console.log("-------------------------\n\n");
+      }
+    });
   }
   compilePug(generate = true) {
     fs.readdir(src.pug, (err, files) => {
