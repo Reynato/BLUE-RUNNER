@@ -151,6 +151,7 @@ class Task {
       const formatted = prettier.format(data.toString(), {
         width: 100,
         parser: "html",
+        htmlWhitespaceSensitivity: "ignore",
       });
       fs.writeFile(file, formatted, (err) => {
         if (err) throw err;
