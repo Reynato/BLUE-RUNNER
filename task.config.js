@@ -105,6 +105,10 @@ class Task {
   }
   singleCompilePug(data) {
     const file = data.replace(/^.*[\\\/]/, "");
+    if (data.match(/components/) || data.match(/layouts/)) {
+      this.compilePug();
+      return;
+    }
     pug.renderFile(`${src.pug}/${file}`, (err, html) => {
       if (err === null) {
         fs.writeFile(`${dist.html}/${file.replace(/\.pug$/, ".html")}`, html, (err) => {
