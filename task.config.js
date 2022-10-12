@@ -11,7 +11,6 @@ const program = require("commander");
 const browserSync = require("browser-sync");
 const msMaper = require("multi-stage-sourcemap").transfer;
 const { color, log } = require("console-log-colors");
-const { red, green, cyan } = color;
 
 const src = {
   root: "./app",
