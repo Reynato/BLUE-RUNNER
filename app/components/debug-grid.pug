@@ -1,0 +1,67 @@
+.debug-grid
+  - for (var x = 0; x < 10; x++)
+    .debug-grid__child(style=`--margin: var(--margin-${x})`)
+
+  style(type="text/css").
+    .debug-grid {
+      pointer-events: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      margin: auto;
+      opacity: 0.3;
+      z-index: 100;
+      width: 100vw;
+      height: 100vh;
+      display: none;
+    }
+    .debug-grid .debug-grid__child {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      margin: auto;
+      border-right: 1rem solid cyan;
+      border-left: 1rem solid cyan;
+      width: calc(100vw - var(--margin) * 2);
+    }
+    .debug-grid .debug-grid__row-child {
+      position: absolute;
+      width: 100vw;
+      top: 0;
+      margin: auto;
+      border-bottom: 1px solid cyan;
+    }
+
+    .debug-grid[gird-show] {
+      display: block;
+    }
+
+  script.
+    (function () {
+      const $el = document.querySelector(".debug-grid");
+      const whiteURL = ["localhost:3000", "haruka-recruit-git-feature-add-direction-reynato-tokyo.vercel.app"];
+      if (!whiteURL.includes(location.host)) {
+        $el.remove();
+        return;
+      }
+      if (localStorage.getItem("debugGridToggle")) {
+        const judge = localStorage.getItem("debugGridToggle") === "true";
+        if (judge) {
+          $el.setAttribute("gird-show", "");
+        } else {
+          $el.removeAttribute("gird-show");
+        }
+      }
+      document.addEventListener("keypress", (e) => {
+        if (event.shiftKey) {
+          if (e.key === "g" || e.key === "G") {
+            $el.toggleAttribute("gird-show");
+            localStorage.setItem("debugGridToggle", $el.hasAttribute("gird-show"));
+          }
+        }
+      });
+    })();

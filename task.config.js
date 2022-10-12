@@ -9,6 +9,9 @@ const fse = require("fs-extra");
 const esbuild = require("esbuild");
 const program = require("commander");
 const browserSync = require("browser-sync");
+const msMaper = require("multi-stage-sourcemap").transfer;
+const { color, log } = require("console-log-colors");
+const { red, green, cyan } = color;
 
 const src = {
   root: "./app",
@@ -96,12 +99,14 @@ class Task {
   mkDist() {
     fs.mkdir("dist", (err) => {
       if (err) throw err;
-      console.log("Make dist directory");
+      console.log(color.greenBG(color.black(" Make dist directory ")));
       // this.bar.update(20);
     });
   }
   cpStatic() {
-    fse.copy(src.static, dist.root).then(() => console.log("Mobved static files"));
+    fse
+      .copy(src.static, dist.root)
+      .then(() => console.log(color.greenBG(color.black(" Moved static files "))));
   }
   singleCompilePug(data) {
     const file = data.replace(/^.*[\\\/]/, "");
@@ -132,7 +137,7 @@ class Task {
           if (err === null) {
             fs.writeFile(`${dist.html}/${file.replace(/\.pug$/, ".html")}`, html, (err) => {
               if (err) throw err;
-              console.log(`Generate ${file.replace(/\.pug$/, ".html")}`);
+              console.log(`Generate ${color.green(file.replace(/\.pug$/, ".html"))}`);
               const htmlFile = file.replace(/\.pug$/, ".html");
               if (generate) {
                 this.prettierHtml(`${dist.html}/${htmlFile}`);
@@ -159,7 +164,7 @@ class Task {
       });
       fs.writeFile(file, formatted, (err) => {
         if (err) throw err;
-        console.log(`Prettier ${file}`);
+        console.log(`Prettier ${color.green(file)}`);
       });
     });
   }
@@ -170,30 +175,28 @@ class Task {
         files.forEach((file) => {
           if (!file.match(/\.sass$/)) return;
 
-          const css = sass.render(
-            {
-              file: `${src.sass}/${file}`,
-            },
-            (err, css) => {
-              if (err) {
-                console.clear();
-                console.log("\n\nSass Error --------------");
-                console.log(err.formatted);
-                console.log("-------------------------\n\n");
-              } else {
-                fs.writeFile(`${dist.css}/${file.replace(/\.sass$/, ".css")}`, css.css, (err) => {
-                  if (err) throw err;
-                  console.log(`Generate ${file.replace(/\.sass$/, ".css")}`);
-                  this.postCssWrite(`${dist.css}/${file.replace(/\.sass$/, ".css")}`);
-                });
-              }
-            }
-          );
+          const css = sass
+            .compileAsync(`${src.sass}/${file}`, {
+              sourceMap: true,
+            })
+            .then((css) => {
+              const sassMap = JSON.stringify(css.sourceMap);
+              fs.writeFile(`${dist.css}/${file.replace(/\.sass$/, ".css")}`, css.css, (err) => {
+                if (err) throw err;
+                console.log(`Generate ${color.green(file.replace(/\.sass$/, ".css"))}`);
+                this.postCssWrite(`${dist.css}/${file.replace(/\.sass$/, ".css")}`, sassMap);
+              });
+            })
+            .catch((err) => {
+              console.log("\n\nSass Error --------------");
+              console.log(err.formatted);
+              console.log("-------------------------\n\n");
+            });
         });
       });
     });
   }
-  postCssWrite(file) {
+  postCssWrite(file, sassMap) {
     fs.readFile(file, (err, css) => {
       if (err) throw err;
       const plugins = [
@@ -201,11 +204,26 @@ class Task {
         require("postcss-logical")(["padding-inline", "margin-inline", "inset"]),
       ];
       postcss(plugins)
-        .process(css, { from: file, to: file })
-        .then((result) => {
-          fs.writeFile(file, result.css, (err) => {
+        .process(css, {
+          from: file,
+          to: file,
+          map: {
+            inline: false,
+            sourcesContent: false,
+          },
+        })
+        .then((css) => {
+          fs.writeFile(file, css.css, (err) => {
             if (err) throw err;
-            console.log(`PostCSS ${file}`);
+            console.log(`PostCSS ${color.green(file)}`);
+          });
+          const map = msMaper({
+            fromSourceMap: css.map.toString(),
+            toSourceMap: sassMap,
+          });
+          fs.writeFile(`${file}.map`, map, (err) => {
+            if (err) throw err;
+            console.log(`PostCSS ${color.green(file + ".map")}`);
           });
         });
     });
@@ -225,7 +243,7 @@ class Task {
               outfile: `${dist.js}/${file.replace(/\.js$/, ".js")}`,
             })
             .then((res) => {
-              console.log(`Generate ${file}`);
+              console.log(`Generate ${color.green(file)}`);
             })
             .catch((err) => {
               console.log(`Generate js file`);
