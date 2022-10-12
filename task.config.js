@@ -240,6 +240,8 @@ class Task {
               entryPoints: [`${src.js}/${file}`],
               bundle: true,
               outfile: `${dist.js}/${file.replace(/\.js$/, ".js")}`,
+              sourcemap: true,
+              minify: true,
             })
             .then((res) => {
               console.log(`Generate ${color.green(file)}`);
