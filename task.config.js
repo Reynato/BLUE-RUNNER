@@ -182,7 +182,7 @@ class Task {
             })
             .catch((err) => {
               console.log("\n\nSass Error --------------");
-              console.log(err.formatted);
+              console.log(err);
               console.log("-------------------------\n\n");
             });
         });
