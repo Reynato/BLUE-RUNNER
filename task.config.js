@@ -94,7 +94,7 @@ class Task {
       "                                                                ",
     ];
     banner.forEach((line) => {
-      console.log(color.blackBG(color.blue(line)));
+      console.log(color.whiteBG(color.black(line)));
     });
     console.log("by reynato.tokyo developer\n");
   }
