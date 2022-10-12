@@ -26,7 +26,7 @@ const dist = {
   js: "./dist/assets/javascripts",
 };
 
-const label = `[${color.green("TASK RUNNER")}]`;
+const label = `[${color.blue("BLUE RUNNER")}]`;
 class Task {
   constructor() {
     program
