@@ -29,6 +29,7 @@ const dist = {
 const label = `[${color.blue("BLUE RUNNER")}]`;
 class Task {
   constructor() {
+    this.blueRunner();
     program
       .version("0.0.1")
       .usage("[options]")
@@ -83,7 +84,20 @@ class Task {
       }
     });
   }
-
+  blueRunner() {
+    const banner = [
+      "  ____  _    _   _ _____   ____  _   _ _   _ _   _ _____ ____   ",
+      " |  _ \\| |  | | | | ____| |  _ \\| \\ | | \\ | | \\ | | ____|  _ \\  ",
+      " | |_) | |  | | | |  _|   | |_) |  \\| |  \\| |  \\| |  _| | |_) | ",
+      " |  _ <| |__| |_| | |___  |  _ <| |\\  | |\\  | |\\  | |___|  _ <  ",
+      " |_| \\_\\_____\\___/|_____| |_| \\_\\_| \\_|_| \\_|_| \\_|_____|_| \\_\\ ",
+      "                                                                ",
+    ];
+    banner.forEach((line) => {
+      console.log(color.blackBG(color.blue(line)));
+    });
+    console.log("by reynato.tokyo developer\n");
+  }
   rmDist() {
     try {
       fs.rmSync(dist.root, { recursive: true, force: true });
