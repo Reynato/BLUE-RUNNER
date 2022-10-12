@@ -26,6 +26,7 @@ const dist = {
   js: "./dist/assets/javascripts",
 };
 
+const label = `[${color.green("TASK RUNNER")}]`;
 class Task {
   constructor() {
     program
@@ -82,10 +83,6 @@ class Task {
       }
     });
   }
-  processBar() {
-    // this.bar = new cliProgress.SingleBar({}, cliProgress.Presets.shades_classic);
-    // this.bar.start(100, 0);
-  }
 
   rmDist() {
     try {
@@ -98,14 +95,11 @@ class Task {
   mkDist() {
     fs.mkdir("dist", (err) => {
       if (err) throw err;
-      console.log(color.greenBG(color.black(" Make dist directory ")));
-      // this.bar.update(20);
+      console.log(`${label} Make dist directory`);
     });
   }
   cpStatic() {
-    fse
-      .copy(src.static, dist.root)
-      .then(() => console.log(color.greenBG(color.black(" Moved static files "))));
+    fse.copy(src.static, dist.root).then(() => console.log(`${label} Moved static files`));
   }
   singleCompilePug(data) {
     const file = data.replace(/^.*[\\\/]/, "");
@@ -117,7 +111,7 @@ class Task {
       if (err === null) {
         fs.writeFile(`${dist.html}/${file.replace(/\.pug$/, ".html")}`, html, (err) => {
           if (err) throw err;
-          console.log(`Generate ${file.replace(/\.pug$/, ".html")}`);
+          console.log(`${label} Generate ${file.replace(/\.pug$/, ".html")}`);
           const htmlFile = file.replace(/\.pug$/, ".html");
         });
       } else {
@@ -136,7 +130,7 @@ class Task {
           if (err === null) {
             fs.writeFile(`${dist.html}/${file.replace(/\.pug$/, ".html")}`, html, (err) => {
               if (err) throw err;
-              console.log(`Generate ${color.green(file.replace(/\.pug$/, ".html"))}`);
+              console.log(`${label} Generate ${color.magenta(file.replace(/\.pug$/, ".html"))}`);
               const htmlFile = file.replace(/\.pug$/, ".html");
               if (generate) {
                 this.prettierHtml(`${dist.html}/${htmlFile}`);
@@ -163,7 +157,7 @@ class Task {
       });
       fs.writeFile(file, formatted, (err) => {
         if (err) throw err;
-        console.log(`Prettier ${color.green(file)}`);
+        console.log(`${label} Prettier ${color.magenta(file)}`);
       });
     });
   }
@@ -182,7 +176,7 @@ class Task {
               const sassMap = JSON.stringify(css.sourceMap);
               fs.writeFile(`${dist.css}/${file.replace(/\.sass$/, ".css")}`, css.css, (err) => {
                 if (err) throw err;
-                console.log(`Generate ${color.green(file.replace(/\.sass$/, ".css"))}`);
+                console.log(`${label} Generate ${color.magenta(file.replace(/\.sass$/, ".css"))}`);
                 this.postCssWrite(`${dist.css}/${file.replace(/\.sass$/, ".css")}`, sassMap);
               });
             })
@@ -214,7 +208,7 @@ class Task {
         .then((css) => {
           fs.writeFile(file, css.css, (err) => {
             if (err) throw err;
-            console.log(`PostCSS ${color.green(file)}`);
+            console.log(`${label} PostCSS ${color.magenta(file)}`);
           });
           const map = msMaper({
             fromSourceMap: css.map.toString(),
@@ -222,7 +216,7 @@ class Task {
           });
           fs.writeFile(`${file}.map`, map, (err) => {
             if (err) throw err;
-            console.log(`PostCSS ${color.green(file + ".map")}`);
+            console.log(`${label} PostCSS ${color.magenta(file + ".map")}`);
           });
         });
     });
@@ -244,10 +238,10 @@ class Task {
               minify: true,
             })
             .then((res) => {
-              console.log(`Generate ${color.green(file)}`);
+              console.log(`${label} Generate ${color.magenta(file)}`);
             })
             .catch((err) => {
-              console.log(`Generate js file`);
+              console.log(`${label} Generate js file`);
               console.clear();
               console.log("\n\nJavaScript Error --------");
               err.errors.forEach((item) => {
