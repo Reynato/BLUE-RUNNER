@@ -1,17 +1,17 @@
 :root
   --margin-1: 40rem
   --margin-2: 80rem
-  --margin-3: 120rem
+  --margin-3: 160rem
   --margin-4: 160rem
-  --margin-5: 200rem
+  --margin-5: 218rem
   --margin-6: 240rem
   +pc-sm-view
-    --margin-1: 16rem
-    --margin-2: 24rem
-    --margin-3: 36rem
-    --margin-4: 57.5rem
-    --margin-5: 16rem
-    --margin-6: 16rem
+    --margin-1: 14rem
+    --margin-2: 22rem
+    --margin-3: 38rem
+    --margin-4: 14rem
+    --margin-5: 14rem
+    --margin-6: 14rem
   
 html
   min-height: 100%
@@ -89,17 +89,16 @@ section
   overflow-x: hidden
   background: var(--color-white-100)
 
-.index
+[index-float]
   position: fixed
   inset: 0
   overflow: hidden
   overscroll-behavior: none
 
-
 [pc-only]
-  +pc-sm-view
+  +sp-view
     display: none !important
 [sp-only]
-  +pc-sm-view-over
+  +sp-view-over
     display: none !important
 
