@@ -2,7 +2,6 @@ const fs = require("fs");
 const pug = require("pug");
 const sass = require("sass");
 const prettier = require("prettier");
-const cliProgress = require("cli-progress");
 const makeDir = require("make-dir");
 const postcss = require("postcss");
 const fse = require("fs-extra");
@@ -11,6 +10,19 @@ const program = require("commander");
 const browserSync = require("browser-sync");
 const msMaper = require("multi-stage-sourcemap").transfer;
 const { color, log } = require("console-log-colors");
+const figlet = require("figlet");
+
+const logColor = {
+  black: "\x1b[30m",
+  red: "\u001b[31m",
+  green: "\u001b[32m",
+  yellow: "\u001b[33m",
+  blue: "\u001b[34m",
+  magenta: "\u001b[35m",
+  cyan: "\u001b[36m",
+  white: "\u001b[37m",
+  reset: "\u001b[0m",
+};
 
 const src = {
   root: "./app",
@@ -62,6 +74,7 @@ class Task {
         baseDir: dist.root,
         index: "index.html",
       },
+      ghostMode: false,
       open: false,
     });
     bs.watch(`${dist.root}/**/*`).on("change", () => {
@@ -84,20 +97,19 @@ class Task {
       }
     });
   }
-  blueRunner() {
-    const banner = [
-      "  ____  _    _   _ _____   ____  _   _ _   _ _   _ _____ ____   ",
-      " |  _ \\| |  | | | | ____| |  _ \\| \\ | | \\ | | \\ | | ____|  _ \\  ",
-      " | |_) | |  | | | |  _|   | |_) |  \\| |  \\| |  \\| |  _| | |_) | ",
-      " |  _ <| |__| |_| | |___  |  _ <| |\\  | |\\  | |\\  | |___|  _ <  ",
-      " |_| \\_\\_____\\___/|_____| |_| \\_\\_| \\_|_| \\_|_| \\_|_____|_| \\_\\ ",
-      "                                                                ",
-    ];
-    banner.forEach((line) => {
-      console.log(color.whiteBG(color.black(line)));
-    });
-    console.log("by reynato.tokyo developer\n");
+  async blueRunner() {
+    await figlet(
+      "BLUE RUNNER",
+      {
+        font: "rectangles",
+      },
+      function (err, data) {
+        if (err) return;
+        console.log(data);
+      }
+    );
   }
+
   rmDist() {
     try {
       fs.rmSync(dist.root, { recursive: true, force: true });
@@ -242,7 +254,6 @@ class Task {
         files.forEach((file) => {
           if (file.match(/_/)) return;
           if (!file.match(/\.js$/)) return;
-
           esbuild
             .build({
               entryPoints: [`${src.js}/${file}`],
@@ -250,6 +261,7 @@ class Task {
               outfile: `${dist.js}/${file.replace(/\.js$/, ".js")}`,
               sourcemap: true,
               minify: true,
+              plugins: [],
             })
             .then((res) => {
               console.log(`${label} Generate ${color.magenta(file)}`);

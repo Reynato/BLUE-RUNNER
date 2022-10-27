@@ -7,7 +7,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 // import { MotionPathPlugin } from "gsap/MotionPathPlugin";
 // import { MotionPathHelper } from "gsap/MotionPathHelper";
 // import { CustomEase } from "gsap/CustomEase";
-import { $, $$, cssVal, scaleClip, spOnly } from "../_global.js";
+import { $, $$, cssVal, scaleClip, spOnly } from "./_global.js";
 gsap.registerPlugin(
   ScrollTrigger
   // DrawSVGPlugin,
@@ -19,7 +19,7 @@ gsap.registerPlugin(
   // CustomEase
 );
 
-export class TopPage {
+export class common {
   constructor() {}
   init() {}
 }
