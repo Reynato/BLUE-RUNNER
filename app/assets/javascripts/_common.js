@@ -19,7 +19,23 @@ gsap.registerPlugin(
   // CustomEase
 );
 
-export class common {
+export default class App {
   constructor() {}
-  init() {}
+  init() {
+    this.headerChangeColor();
+  }
+  headerChangeColor() {
+    const headerBottom = $(".base-header").getBoundingClientRect().bottom;
+    $$("[black-cover]").forEach((el) => {
+      console.log(el);
+      ScrollTrigger.create({
+        trigger: el,
+        end: `bottom top+=${headerBottom}`,
+        onEnter: () => $(".base-header").setAttribute("header-white", ""),
+        onLeave: () => $(".base-header").removeAttribute("header-white"),
+        onEnterBack: () => $(".base-header").setAttribute("header-white", ""),
+        onLeaveBack: () => $(".base-header").removeAttribute("header-white"),
+      });
+    });
+  }
 }

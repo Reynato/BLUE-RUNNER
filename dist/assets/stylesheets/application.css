@@ -305,13 +305,13 @@ template {
 }
 
 html {
-  --color-beige-100: rgba(209,203,199,1);
-  --color-beige-200: rgba(202,195,191,1);
-  --color-beige-300: rgba(190,181,175,1);
-  --color-black-100: rgba(26,26,26,1);
-  --color-navy-100: rgba(7,27,53,1);
-  --color-white-200: rgba(247,247,247,1);
-  --color-white-100: rgba(255,255,255,1);
+  --color-beige-100: #d1cbc7;
+  --color-beige-200: #cac3bf;
+  --color-beige-300: #beb5af;
+  --color-black-100: #1a1a1a;
+  --color-navy-100: #071b35;
+  --color-white-200: #f7f7f7;
+  --color-white-100: #ffffff;
   --select-fill-color: var(--color-navy-100);
   --select-text-color: var(--color-white-100);
 }
@@ -320,9 +320,7 @@ html {
   --margin-1: 40rem;
   --margin-2: 80rem;
   --margin-3: 160rem;
-  --margin-4: 160rem;
-  --margin-5: 218rem;
-  --margin-6: 240rem;
+  --margin-4: 218rem;
 }
 @media (max-width: 992px) {
   :root {
@@ -330,8 +328,6 @@ html {
     --margin-2: 22rem;
     --margin-3: 38rem;
     --margin-4: 14rem;
-    --margin-5: 14rem;
-    --margin-6: 14rem;
   }
 }
 
@@ -552,7 +548,131 @@ section {
   padding: 2rem 8rem;
 }
 
-[top-page] {
+.base-header {
+  position: fixed;
+  top: 40rem;
+  z-index: 10;
+  width: 100vw;
+  padding-left: var(--margin-1);
+  padding-right: var(--margin-1);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.base-header .base-header__logo svg {
+  width: 199rem;
+  height: auto;
+}
+.base-header .base-header__menu {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  gap: 40rem;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+@supports not (aspect-ratio: 16/9) {
+  .base-header .base-header__menu {
+    gap: 0px;
+  }
+  .base-header .base-header__menu > *:not(:last-child) {
+    margin-right: 40rem;
+  }
+}
+@media all and (-ms-high-contrast: none) {
+  .base-header .base-header__menu {
+    gap: 0px;
+  }
+  .base-header .base-header__menu > *:not(:last-child) {
+    margin-right: 40rem;
+  }
+}
+.base-header .base-header__menu__item {
+  font-size: 16rem;
+  font-family: ltc-bodoni-175, "Yu Gothic Medium", "Yu Gothic", YuGothic, "A+EqpB-游ゴシック体 Pr6N M", selif;
+  font-weight: 400;
+  line-height: 1;
+}
+.base-header .base-header__nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  gap: 0rem;
+}
+@supports not (aspect-ratio: 16/9) {
+  .base-header .base-header__nav {
+    gap: 0px;
+  }
+  .base-header .base-header__nav > *:not(:last-child) {
+    margin-right: 0rem;
+  }
+}
+@media all and (-ms-high-contrast: none) {
+  .base-header .base-header__nav {
+    gap: 0px;
+  }
+  .base-header .base-header__nav > *:not(:last-child) {
+    margin-right: 0rem;
+  }
+}
+.base-header .base-header__nav__item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  gap: 10rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-left: 20rem;
+}
+@supports not (aspect-ratio: 16/9) {
+  .base-header .base-header__nav__item {
+    gap: 0px;
+  }
+  .base-header .base-header__nav__item > *:not(:last-child) {
+    margin-right: 10rem;
+  }
+}
+@media all and (-ms-high-contrast: none) {
+  .base-header .base-header__nav__item {
+    gap: 0px;
+  }
+  .base-header .base-header__nav__item > *:not(:last-child) {
+    margin-right: 10rem;
+  }
+}
+.base-header .base-header__nav__item-count {
+  width: 22rem;
+  height: 22rem;
+  background: var(--color-white-100);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -562,6 +682,344 @@ section {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding-top: 200rem;
+  border: 1px solid rgba(26, 26, 26, 0.2);
+  border-radius: 100%;
+  font-size: 10rem;
+  font-family: bilo, "Yu Gothic Medium", "Yu Gothic", YuGothic, "A+EqpB-游ゴシック体 Pr6N M", selif;
+  font-weight: 400;
+  line-height: 1;
+}
+.base-header .base-header__nav__item-button {
+  width: 27rem;
+  height: 27rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  margin-left: 38rem;
+}
+.base-header .base-header__nav__item-bar {
+  width: 100%;
+  height: 1px;
+  background: var(--color-black-100);
+  display: inline-block;
+}
+.base-header .logo_inline path, .base-header .icon_cart path, .base-header .icon_user path {
+  -webkit-transition: fill 0.3s ease;
+  transition: fill 0.3s ease;
+}
+.base-header .base-header__menu__item {
+  -webkit-transition: color 0.3s ease;
+  transition: color 0.3s ease;
+}
+.base-header .base-header__nav__item span {
+  -webkit-transition: color 0.3s ease;
+  transition: color 0.3s ease;
+}
+.base-header .base-header__nav__item-count span {
+  -webkit-transition: color 0.3s ease;
+  transition: color 0.3s ease;
+}
+.base-header .base-header__nav__item-bar {
+  -webkit-transition: background 0.3s ease;
+  transition: background 0.3s ease;
+}
+.base-header[header-white] .logo_inline path, .base-header[header-white] .icon_cart path, .base-header[header-white] .icon_user path {
+  fill: var(--color-white-100);
+}
+.base-header[header-white] .base-header__menu__item, .base-header[header-white] .base-header__nav__item {
+  color: var(--color-white-100);
+}
+.base-header[header-white] .base-header__nav__item-count {
+  color: var(--color-black-100);
+}
+.base-header[header-white] .base-header__nav__item-bar {
+  background: var(--color-white-100);
+}
+
+[top-page] {
+  min-height: 200vw;
+  position: relative;
+}
+[top-page] .first {
+  height: 100vh;
+  height: 100svh;
+  width: 100vw;
+  max-height: 900rem;
+  position: relative;
+  color: var(--color-white-100);
+}
+[top-page] .first .first__front, [top-page] .first .first__back {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  width: 100%;
+  height: 100%;
+}
+[top-page] .first .first__front {
+  z-index: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  padding-bottom: 120rem;
+}
+[top-page] .first .first__back {
+  background: var(--color-navy-100);
+}
+[top-page] .first .first__key {
+  width: calc(100vw - var(--margin-3) * 2);
+  margin-left: auto;
+  margin-right: auto;
+}
+[top-page] .first .first__key-item__lead {
+  font-size: 14rem;
+  font-family: bilo, "Yu Gothic Medium", "Yu Gothic", YuGothic, "A+EqpB-游ゴシック体 Pr6N M", selif;
+  font-weight: 400;
+  line-height: 1;
+  text-transform: uppercase;
+  opacity: 0.74;
+}
+[top-page] .first .first__key-item__title {
+  font-size: 44rem;
+  font-family: ltc-bodoni-175, "Yu Gothic Medium", "Yu Gothic", YuGothic, "A+EqpB-游ゴシック体 Pr6N M", selif;
+  font-weight: 400;
+  line-height: 1;
+  margin-top: 24rem;
+  line-height: 1.3;
+}
+[top-page] .first .first__key-item__sub {
+  font-size: 14rem;
+  font-family: "Yu Gothic Medium", "Yu Gothic", YuGothic, "A+EqpB-游ゴシック体 Pr6N M", selif;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  margin-top: 24rem;
+}
+[top-page] .first .first__bottom {
+  position: relative;
+  width: calc(100vw - var(--margin-3) * 2);
+  margin-left: auto;
+  margin-right: auto;
+  height: 49rem;
+  margin-top: 72rem;
+}
+[top-page] .first .first__collection-link {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  padding-left: 21rem;
+  padding-right: 21rem;
+  background: var(--color-white-100);
+  color: var(--color-black-100);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 14rem;
+  font-family: "Yu Gothic Medium", "Yu Gothic", YuGothic, "A+EqpB-游ゴシック体 Pr6N M", selif;
+  font-weight: 500;
+  line-height: 1;
+}
+[top-page] .first .first__scroll {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  margin: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 20rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+@supports not (aspect-ratio: 16/9) {
+  [top-page] .first .first__scroll {
+    gap: 0px;
+  }
+  [top-page] .first .first__scroll > *:not(:last-child) {
+    margin-bottom: 20rem;
+  }
+}
+@media all and (-ms-high-contrast: none) {
+  [top-page] .first .first__scroll {
+    gap: 0px;
+  }
+  [top-page] .first .first__scroll > *:not(:last-child) {
+    margin-bottom: 20rem;
+  }
+}
+[top-page] .first .first__scroll__bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  height: 178rem;
+  width: 1rem;
+  background: rgba(255, 255, 255, 0.1019607843);
+  --top-num: 55rem;
+  --bottom-num: calc(100% - 55rem);
+  -webkit-clip-path: polygon(0% 0%, 0% 100%, 0 100%, 0 var(--top-num), 100% var(--top-num), 100% var(--bottom-num), 0 var(--bottom-num), 0 100%, 100% 100%, 100% 0%);
+          clip-path: polygon(0% 0%, 0% 100%, 0 100%, 0 var(--top-num), 100% var(--top-num), 100% var(--bottom-num), 0 var(--bottom-num), 0 100%, 100% 100%, 100% 0%);
+}
+[top-page] .first .first__scroll__bar-child {
+  width: 100%;
+  height: 3rem;
+  background: var(--color-white-100);
+}
+[top-page] .first .first__scroll__text {
+  font-size: 12rem;
+  font-family: bilo, "Yu Gothic Medium", "Yu Gothic", YuGothic, "A+EqpB-游ゴシック体 Pr6N M", selif;
+  font-weight: 400;
+  line-height: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 0rem;
+  height: 12rem;
+  overflow: hidden;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+@supports not (aspect-ratio: 16/9) {
+  [top-page] .first .first__scroll__text {
+    gap: 0px;
+  }
+  [top-page] .first .first__scroll__text > *:not(:last-child) {
+    margin-bottom: 0rem;
+  }
+}
+@media all and (-ms-high-contrast: none) {
+  [top-page] .first .first__scroll__text {
+    gap: 0px;
+  }
+  [top-page] .first .first__scroll__text > *:not(:last-child) {
+    margin-bottom: 0rem;
+  }
+}
+[top-page] .first .first__progress {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  gap: 20rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+@supports not (aspect-ratio: 16/9) {
+  [top-page] .first .first__progress {
+    gap: 0px;
+  }
+  [top-page] .first .first__progress > *:not(:last-child) {
+    margin-right: 20rem;
+  }
+}
+@media all and (-ms-high-contrast: none) {
+  [top-page] .first .first__progress {
+    gap: 0px;
+  }
+  [top-page] .first .first__progress > *:not(:last-child) {
+    margin-right: 20rem;
+  }
+}
+[top-page] .first .first__progress__wrap {
+  width: 100rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  gap: 7rem;
+}
+@supports not (aspect-ratio: 16/9) {
+  [top-page] .first .first__progress__wrap {
+    gap: 0px;
+  }
+  [top-page] .first .first__progress__wrap > *:not(:last-child) {
+    margin-right: 7rem;
+  }
+}
+@media all and (-ms-high-contrast: none) {
+  [top-page] .first .first__progress__wrap {
+    gap: 0px;
+  }
+  [top-page] .first .first__progress__wrap > *:not(:last-child) {
+    margin-right: 7rem;
+  }
+}
+[top-page] .first .first__progress__item {
+  background: rgba(255, 255, 255, 0.4);
+  height: 1px;
+  width: 100%;
+}
+[top-page] .first .first__progress__count {
+  font-size: 32rem;
+  font-family: ltc-bodoni-175, "Yu Gothic Medium", "Yu Gothic", YuGothic, "A+EqpB-游ゴシック体 Pr6N M", selif;
+  font-weight: 400;
+  line-height: 1;
+}
+[top-page] .first .first__progress__count-small {
+  font-size: 22rem;
 }
 /*# sourceMappingURL=application.css.map */

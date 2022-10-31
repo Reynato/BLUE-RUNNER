@@ -218,7 +218,10 @@ class Task {
   postCssWrite(file, sassMap) {
     fs.readFile(file, (err, css) => {
       if (err) throw err;
-      const plugins = [require("autoprefixer")(), require("postcss-logical")(["padding-inline", "margin-inline", "inset"])];
+      const plugins = [
+        require("autoprefixer")(),
+        require("postcss-logical")(["padding-inline", "margin-inline", "inset"]),
+      ];
       postcss(plugins)
         .process(css, {
           from: file,
@@ -268,6 +271,7 @@ class Task {
               console.clear();
               console.log("\n\nJavaScript Error --------");
               err.errors.forEach((item) => {
+                console.log(item.text);
                 console.log(item.location);
               });
               console.log("-------------------------\n\n");

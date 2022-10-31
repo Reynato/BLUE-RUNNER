@@ -6,20 +6,56 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 // import { SplitText } from "gsap/SplitText";
 // import { MotionPathPlugin } from "gsap/MotionPathPlugin";
 // import { MotionPathHelper } from "gsap/MotionPathHelper";
-// import { CustomEase } from "gsap/CustomEase";
+import { CustomEase } from "gsap/CustomEase";
 import { $, $$, cssVal, scaleClip, spOnly } from "../_global.js";
 gsap.registerPlugin(
-  ScrollTrigger
+  ScrollTrigger,
   // DrawSVGPlugin,
   // ScrollToPlugin,
   // GSDevTools,
   // SplitText,
   // MotionPathPlugin,
   // MotionPathHelper,
-  // CustomEase
+  CustomEase
 );
 
-export class TopPage {
+export default class App {
   constructor() {}
-  init() {}
+  init() {
+    this.firstScrollPartsDirection();
+  }
+  firstScrollPartsDirection() {
+    const tl = gsap.timeline({
+      repeat: -1,
+      repeatDelay: 2,
+    });
+    tl.set(".first__scroll__bar-child", {
+      y: "-100%",
+    });
+    tl.to(".first__scroll__bar-child", {
+      y: "0%",
+      duration: 0.3,
+    });
+    tl.to(
+      ".first__scroll__bar-child",
+      {
+        y: "178rem",
+        duration: 2,
+        ease: "expo.inOut",
+      },
+      "child"
+    );
+    tl.to(
+      ".first__scroll__text span",
+      {
+        y: "100%",
+        duration: 1,
+        ease: CustomEase.create(
+          "custom",
+          "M0,0,C0.068,0,0.147,0.033,0.188,0.06,0.281,0.12,0.319,0.302,0.351,0.512,0.385,0.74,0.439,0.89,0.493,0.938,0.532,0.972,0.698,1,1,1"
+        ),
+      },
+      "child+=0.5"
+    );
+  }
 }

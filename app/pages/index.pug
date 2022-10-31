@@ -1,4 +1,31 @@
 extends ../layouts/_default.pug
 block content
   .p-index(top-page)
-    include ../components/tutorial.pug
+    .first(black-cover)
+      .first__front
+        .first__key
+          .first__key-item
+            p.first__key-item__lead SLEEP COLLECTION
+            h2.first__key-item__title BETTER SLEEP IMPROVES <br>THE QUALITY OF LIFE.
+            p.first__key-item__sub より良い睡眠で、生活の質を向上させます。
+        .first__bottom
+          a.first__collection-link(href="#")
+            span スリープコレクションを見る
+          .first__scroll
+            .first__scroll__bar
+              .first__scroll__bar-child
+            p.first__scroll__text
+              span SCROLL
+              span SCROLL
+
+          .first__progress
+            .first__progress__wrap
+              .first__progress__item
+              .first__progress__item
+              .first__progress__item
+            .first__progress__count
+              span.first__progress__count-big 1
+              span.first__progress__count-small /3
+      .first__back
+    p aaaaaaa
+    p bbbbbb
