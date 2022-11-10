@@ -1,0 +1,35 @@
+.base-footer
+  width: 100vw
+  padding-bottom: 100vw
+  .base-footer-crumbs
+    width: 100vw
+    height: 58rem
+    padding-inline: var(--margin-2)
+    background: #1a1a1a1f
+    display: flex
+    justify-content: space-between
+    align-items: center
+  .base-footer-crumbs__list
+    +gap(right, 16rem)
+    align-items: baseline
+    +text(12rem, regular, $family-bio)
+    letter-spacing: -0.02em
+    span:first-child
+      opacity: 0.6
+    .icon_top
+      width: 14rem
+      height: auto
+  .base-footer-nav
+    background: var(--color-navy-100)
+    padding: 63rem var(--margin-2) 73rem
+    color: var(--color-white-100)
+    .base-footer-nav__list
+      +text(12rem, medium, $family)
+      line-height: 1
+      display: grid
+      grid-template-columns: repeat(2, 1fr)
+      grid-template-rows: repeat(5, 1fr)
+      gap: 24px 114px
+      max-width: 410rem
+      a
+        +text-inherit

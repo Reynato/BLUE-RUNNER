@@ -60,6 +60,26 @@ export default class App {
     );
   }
   reviewDirection() {
+    // スクロールの動き
+    const boxHeight = $(".review__scrollbar__box").getBoundingClientRect().height;
+    const thumbHeight = $(".review__scrollbar__thumb").getBoundingClientRect().height;
+    console.log(boxHeight, thumbHeight);
+    const tl = gsap.timeline();
+    tl.to(".review__scrollbar__thumb", {
+      y: boxHeight - thumbHeight,
+      ease: "none",
+    });
+
+    const wrapScroll = ScrollTrigger.create({
+      trigger: ".review__list",
+      scrub: true,
+      scroller: ".review__list-wrap",
+      start: "top top",
+      end: "bottom bottom",
+      animation: tl,
+    });
+
+    // 開く時の動作
     const reviewItem = $$(".review__item");
     reviewItem.forEach((item) => {
       const mainHeight = $(".review__item__body-main").getBoundingClientRect().height;
@@ -74,6 +94,9 @@ export default class App {
 
       item.addEventListener("click", () => {
         item.toggleAttribute("item-open");
+        setTimeout(() => {
+          wrapScroll.refresh();
+        }, 600);
       });
     });
   }

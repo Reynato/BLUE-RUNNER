@@ -9,7 +9,7 @@ block content
             h2.first__key-item__title BETTER SLEEP IMPROVES <br>THE QUALITY OF LIFE.
             p.first__key-item__sub より良い睡眠で、生活の質を向上させます。
         .first__bottom
-          a.first__collection-link(href="#")
+          a.first__collection-link(href="#", grad-button)
             span スリープコレクションを見る
           .first__scroll
             .first__scroll__bar
@@ -33,7 +33,7 @@ block content
           h2 ABOUT
           p フィリップスタインについて
         p.about__message__description ”身につける人の健康と幸福感を高めたい”<br>創業者のウィル&リナ・スタイン夫妻の想いから<br>フィリップスタインはスタートしました。<br>「身につける健康法」の世界的リーダーとして、<br>健康と調和を最適化する時代を超えたアクセサリーを<br>皆様に提供するために、製品の開発に取り組んでいます。
-        a.about__message__link(grad-button)
+        a.about__message__link(href="#", grad-button)
           span もっと見る
       .about__visual
         img.about__visual__image(src="./images/top/about_visual.jpg")
@@ -68,18 +68,25 @@ block content
       .review__main
         .review__list-wrap
           .review__list
-            - for (var i = 1; i < 20; i++)
-              button.review__item
+            - for (var i = 0; i < 20; i++)
+              button.review__item(star="3")
                 .review__item__header
                   .review__item__header-user
                     include ../assets/svg/icon_user-fill.svg
                     span yawataman
                   .review__item__header-num
-                    include ../assets/svg/icon_star-fill.svg
-                    include ../assets/svg/icon_star-fill.svg
-                    include ../assets/svg/icon_star-fill.svg
-                    include ../assets/svg/icon_star-fill.svg
-                    include ../assets/svg/icon_star-empty.svg
+                    .review__item__header-star.review__item__header-star--empty
+                      include ../assets/svg/icon_star-empty.svg
+                      include ../assets/svg/icon_star-empty.svg
+                      include ../assets/svg/icon_star-empty.svg
+                      include ../assets/svg/icon_star-empty.svg
+                      include ../assets/svg/icon_star-empty.svg
+                    .review__item__header-star.review__item__header-star--fill
+                      include ../assets/svg/icon_star-fill.svg
+                      include ../assets/svg/icon_star-fill.svg
+                      include ../assets/svg/icon_star-fill.svg
+                      include ../assets/svg/icon_star-fill.svg
+                      include ../assets/svg/icon_star-fill.svg
                 .review__item__body
                   p.review__item__body-title スポーツ中も邪魔にならなくて、長時間付けてても気になりませんでした！スポーツ中も邪魔にならなくて、長時間付けてても気になりませんでした！
                   .review__item__body-main
@@ -87,9 +94,31 @@ block content
                 .review__item__bottom
                   p.review__item__bottom-category / ZONE
                   p.review__item__bottom-text をご使用
+        .review__scrollbar
+          .review__scrollbar__box
+            .review__scrollbar__thumb
       .review__button
         time(datetime="2022-10-31") 2022.10.31
         include ../assets/svg/icon_reload.svg
-
-    p aaaaaaa
-    p bbbbbb
+    section.column
+      .column__title.parts-section-title
+        h2 COLUMN
+        p コラム・特集
+      .column__wrap
+        include ../components/parts-card.pug
+        include ../components/parts-card.pug
+        include ../components/parts-card.pug
+      a.column__link(href="#") 全てのコレクションを見る >
+    section.news
+      .news__title.parts-section-title
+        h2 NEWS
+        p 新着情報
+      .news__wrap
+        - for (var i = 0; i < 3; i++)
+          a.news__item(href="#")
+            time.news__item__date 2022.11.29
+            h3.news__item__title ゴルフ我流道様のYouTubeチャンネルにて、スリープブレスレットをご紹介いただきました。
+            .news__item__category-wrap
+              p.news__item__category MEDIA
+      a.news__link(href="#") 全て見る >
+    include ../components/base-footer.pug
