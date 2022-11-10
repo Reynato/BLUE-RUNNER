@@ -1,7 +1,7 @@
 extends ../layouts/_default.pug
 block content
   .p-index(top-page)
-    .first(black-cover)
+    section.first(black-cover)
       .first__front
         .first__key
           .first__key-item
@@ -27,5 +27,69 @@ block content
               span.first__progress__count-big 1
               span.first__progress__count-small /3
       .first__back
+    section.about
+      .about__message
+        .about__message__title.parts-section-title
+          h2 ABOUT
+          p フィリップスタインについて
+        p.about__message__description ”身につける人の健康と幸福感を高めたい”<br>創業者のウィル&リナ・スタイン夫妻の想いから<br>フィリップスタインはスタートしました。<br>「身につける健康法」の世界的リーダーとして、<br>健康と調和を最適化する時代を超えたアクセサリーを<br>皆様に提供するために、製品の開発に取り組んでいます。
+        a.about__message__link(grad-button)
+          span もっと見る
+      .about__visual
+        img.about__visual__image(src="./images/top/about_visual.jpg")
+    section.collection
+      .collection__title
+        p.collection__title__sub Natural frequency bracelets have three effects/categories.
+        h2.collection__title__main COLLECTION
+      .collection__slide
+        .collection__item
+          .collection__item__image
+            img(src="./images/top/collection_1.jpg")
+          .collection__item__text
+            h3.collection__item__title-main ZONE
+            p.collection__item__title-sub ゾーンブレスレット
+        .collection__item
+          .collection__item__image
+            img(src="./images/top/collection_1.jpg")
+          .collection__item__text
+            h3.collection__item__title-main ZONE
+            p.collection__item__title-sub ゾーンブレスレット
+        .collection__item
+          .collection__item__image
+            img(src="./images/top/collection_1.jpg")
+          .collection__item__text
+            h3.collection__item__title-main ZONE
+            p.collection__item__title-sub ゾーンブレスレット
+      a.collection__link(href="#") 全てのコレクションを見る >
+    section.review
+      .review__title.parts-section-title
+        h2 REVIEW
+        p お客様のレビュー
+      .review__main
+        .review__list-wrap
+          .review__list
+            - for (var i = 1; i < 20; i++)
+              button.review__item
+                .review__item__header
+                  .review__item__header-user
+                    include ../assets/svg/icon_user-fill.svg
+                    span yawataman
+                  .review__item__header-num
+                    include ../assets/svg/icon_star-fill.svg
+                    include ../assets/svg/icon_star-fill.svg
+                    include ../assets/svg/icon_star-fill.svg
+                    include ../assets/svg/icon_star-fill.svg
+                    include ../assets/svg/icon_star-empty.svg
+                .review__item__body
+                  p.review__item__body-title スポーツ中も邪魔にならなくて、長時間付けてても気になりませんでした！スポーツ中も邪魔にならなくて、長時間付けてても気になりませんでした！
+                  .review__item__body-main
+                    p.review__item__body-main-text お正月は家族みんなで、ワイワイと箱根駅伝を見て応援しています！！毎年のデザインも楽しみです！1人のお客様がこれが役に立ったと考えています。お正月は家族みんなで、ワイワイと箱根駅伝を見て応援しています！！毎年のデザインも楽しみです！1人のお客様がこれが役に立ったと考えています。お正月は家族みんなで、ワイワイと箱根駅伝を見て応援しています！！毎年のデザインも楽しみです！1人のお客様がこれが役に立ったと考えています。
+                .review__item__bottom
+                  p.review__item__bottom-category / ZONE
+                  p.review__item__bottom-text をご使用
+      .review__button
+        time(datetime="2022-10-31") 2022.10.31
+        include ../assets/svg/icon_reload.svg
+
     p aaaaaaa
     p bbbbbb

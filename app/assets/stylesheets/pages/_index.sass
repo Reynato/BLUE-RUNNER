@@ -1,6 +1,6 @@
 [top-page]
-  min-height: 200vw
-  position: relative  
+  position: relative
+  padding-bottom: 100vw
   .first
     height: 100vh
     height: 100svh
@@ -28,7 +28,7 @@
       margin-inline: auto
     // .first__key-item
     .first__key-item__lead
-      +text(14rem, regular, $family-bilo)
+      +text(14rem, regular, $family-bio)
       text-transform: uppercase
       opacity: 0.74
     .first__key-item__title
@@ -81,7 +81,7 @@
       height: 3rem
       background: var(--color-white-100)
     .first__scroll__text
-      +text(12rem, regular, $family-bilo)
+      +text(12rem, regular, $family-bio)
       +gap(bottom, 0rem)
       height: 12rem
       overflow: hidden 
@@ -108,3 +108,194 @@
     // .first__progress__count-big
     .first__progress__count-small
       font-size: 22rem
+  .about
+    padding-top: 100rem
+    // padding-inline: var(--margin-2)
+    +sp-view-over
+      padding-left: var(--margin-3)
+      padding-right: var(--margin-2)
+      display: flex
+      justify-content: space-between
+    .about__visual
+      max-width: 738rem
+      width: 100%
+      height: 620rem
+      // +test-border
+    .about__visual__image
+      height: 100%
+      --gap: 138rem
+      width: calc(100% - var(--gap))
+    .about__message
+      margin-top: auto
+      margin-bottom: 33rem
+    .about__message__description
+      +text(15rem, medium, $family)
+      line-height: 2.4
+      letter-spacing: -0.02em
+      margin-top: 80rem
+    .about__message__link
+      width: 220rem
+      margin-top: 80rem
+  .collection
+    margin-top: 120rem
+    position: relative
+    display: flex
+    flex-direction: column
+    align-items: flex-start
+    +sp-view-over
+      padding-left: var(--margin-3)
+      padding-right: var(--margin-2)
+    .collection__title
+      +gap(right, 14rem)
+      position: absolute
+      left: var(--margin-1)
+      // position: 
+    .collection__title__main, .collection__title__sub
+      writing-mode: vertical-rl
+      line-height: 1
+    .collection__title__main
+      +text(40rem, book, $family-bodoni)
+      letter-spacing: 0.02em
+    .collection__title__sub
+      +text(12rem, light, $family-bio)
+      letter-spacing: 0.02em
+      
+    .collection__slide
+      width: 100%
+      +gap(right, 25rem)
+    .collection__item
+      flex: 1
+      width: 100%
+    .collection__item__image
+      width: 100%
+      img
+        width: 100%
+        height: 506rem
+    .collection__item__text
+      +gap(right, 16rem)
+      align-items: center
+      margin-top: 10rem
+    .collection__item__title-main
+      +text(20rem, book, $family-bodoni)
+    .collection__item__title-sub
+      +text(11rem, medium, $family)
+      letter-spacing: -0.02em
+      opacity: 0.6
+    .collection__link
+      margin-left: auto
+      width: fit-content
+      text-decoration: underline
+      display: inline-block
+      +text(13rem, medium, $family)
+      letter-spacing: -0.02em
+      margin-top: 36rem
+  .review
+    height: 665rem
+    width: 100%
+    background: var(--color-beige-300)
+    margin-top: 120rem
+    --main-width: 1183rem
+    position: relative
+    +sp-view-over
+      padding-left: var(--main-width)
+      padding-top: 116rem
+      padding-bottom: 120rem
+      display: flex
+      justify-content: space-between
+      flex-direction: column
+      align-items: center
+    .review__title
+      h2,p
+        text-align: center
+    .review__main
+      width: var(--main-width)
+      height: 100%
+      background: var(--color-beige-100)
+      +sp-view-over
+        position: absolute
+        left: 0
+        top: 0
+    .review__main
+      +sp-view-over
+        padding-left: var(--margin-2)
+        padding-right: 140rem
+    .review__button
+      +text(12rem, regular, $family-bio)
+      letter-spacing: 0.02em
+      +gap(right, 12rem)
+      align-items: center
+      time
+        +text-inherit
+    .review__list-wrap
+      height: 100%
+      overflow-y: scroll
+    .review__list
+      padding-top: 129rem
+      padding-bottom: 129rem
+      +gap(bottom, 30rem)
+    .review__item
+      display: flex
+      justify-content: space-between
+      align-items: flex-start
+      padding-bottom: 30rem
+      border-bottom: 1px solid #1A1A1A4d
+      width: 100%
+    .review__item__header
+      max-width: 266rem
+      width: 100%
+      display: flex
+      justify-content: space-between
+      align-items: center
+    .review__item__header-user
+      +text(13rem, medium, $family)
+      letter-spacing: -0.02em
+      +gap(right, 14rem)
+      align-items: center
+      .icon_user-fill
+        +size(31rem)
+    .review__item__header-num
+    .review__item__body
+      max-width: 500rem
+      margin-top: 5rem
+    .review__item__body-title
+      +text(12rem, medium, $family)
+      line-height: 1.7
+      // +text-overflow(1)
+    .review__item__body-main
+      // padding-top: 
+      height: fit-content
+      // max-height: 0rem
+      overflow: hidden
+    .review__item__body-main-text
+      padding-top: 20rem
+      +text(11rem, regular, $family)
+      line-height: 1.7
+    .review__item__bottom
+      max-width: 91rem
+      width: 100%
+      display: flex
+      justify-content: space-between
+      margin-top: 9rem
+    .review__item__bottom-category
+      +text(11rem, medium, $family)
+      line-height: 1
+    .review__item__bottom-text
+      +text(10rem, medium, $family)
+      line-height: 1
+      opacity: 0.6
+
+    // transition
+    .review__item__body-main
+      transition: max-height 0.5s ease
+    // animation
+    .review__item:not([item-open])
+      .review__item__body-title
+        +text-overflow(1)
+    .review__item[item-open]
+      .review__item__body-title
+        // +text-overflow(99)
+      .review__item__body-main
+        max-height: var(--height) !important
+
+
+

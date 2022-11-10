@@ -23,6 +23,7 @@ export default class App {
   constructor() {}
   init() {
     this.firstScrollPartsDirection();
+    this.reviewDirection();
   }
   firstScrollPartsDirection() {
     const tl = gsap.timeline({
@@ -57,5 +58,23 @@ export default class App {
       },
       "child+=0.5"
     );
+  }
+  reviewDirection() {
+    const reviewItem = $$(".review__item");
+    reviewItem.forEach((item) => {
+      const mainHeight = $(".review__item__body-main").getBoundingClientRect().height;
+      console.log(mainHeight);
+      const tl = gsap.timeline();
+      tl.set(item, {
+        "--height": mainHeight + "px",
+      });
+      tl.set($(".review__item__body-main", item), {
+        maxHeight: 0 + "px",
+      });
+
+      item.addEventListener("click", () => {
+        item.toggleAttribute("item-open");
+      });
+    });
   }
 }
