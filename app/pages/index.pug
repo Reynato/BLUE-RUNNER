@@ -1,32 +1,50 @@
 extends ../layouts/_default.pug
 block content
-  .p-index(top-page)
+  .container(top-page)
     section.first(black-cover)
-      .first__front
-        .first__key
+      .first__info
+        .first__key(blacelet-type="sleep")
           .first__key-item
             p.first__key-item__lead SLEEP COLLECTION
             h2.first__key-item__title BETTER SLEEP IMPROVES <br>THE QUALITY OF LIFE.
             p.first__key-item__sub より良い睡眠で、生活の質を向上させます。
-        .first__bottom
-          a.first__collection-link(href="#", grad-button)
+          a.first__key-link(href="#", grad-button)
             span スリープコレクションを見る
+        .first__key(blacelet-type="relax")
+          .first__key-item
+            p.first__key-item__lead RELAX COLLECTION
+            h2.first__key-item__title LESS STRESS IMPROVES <br>THE QUALITY OF LIFE.
+            p.first__key-item__sub リラックスで、生活の質を向上させます。
+          a.first__key-link(href="#", grad-button)
+            span リラックスコレクションを見る
+        .first__key(blacelet-type="zone")
+          .first__key-item
+            p.first__key-item__lead ZONE COLLECTION
+            h2.first__key-item__title LEADS YOU <br>TO THE ZONE.
+            p.first__key-item__sub ゾーンに導きます。
+          a.first__key-link(href="#", grad-button)
+            span ゾーンコレクションを見る
+
+        .first__bottom
           .first__scroll
             .first__scroll__bar
               .first__scroll__bar-child
-            p.first__scroll__text
-              span SCROLL
-              span SCROLL
-
+            p.first__scroll__text SCROLL
           .first__progress
             .first__progress__wrap
               .first__progress__item
               .first__progress__item
               .first__progress__item
             .first__progress__count
-              span.first__progress__count-big 1
+              span.first__progress__count-big
+                span 1
+                span 2
+                span 3
+                span 1
+                span 2
+                span 3
               span.first__progress__count-small /3
-      .first__back
+      .first__visual
     section.about
       .about__message
         .about__message__title.parts-section-title

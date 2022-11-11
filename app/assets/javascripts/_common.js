@@ -30,7 +30,7 @@ export default class App {
   headerChangeColor() {
     const headerBottom = $(".base-header").getBoundingClientRect().bottom;
     $$("[black-cover]").forEach((el) => {
-      console.log(el);
+      // console.log(el);
       ScrollTrigger.create({
         trigger: el,
         end: `bottom top+=${headerBottom}`,

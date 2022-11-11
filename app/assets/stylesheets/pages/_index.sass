@@ -7,24 +7,24 @@
     max-height: 900rem
     position: relative
     color: var(--color-white-100)
-    .first__front, .first__back
+    overflow: hidden
+    .first__info, .first__visual
       +absolute-middle
       +size(100%)
-    .first__front
+    .first__info
       z-index: 1
       display: flex
       flex-direction: column
       justify-content: flex-end
       padding-bottom: 120rem
-    .first__back
+    .first__visual
       background: var(--color-navy-100)
 
     .first__key
-      // position: absolute
-      // bottom: 0
-      // +test-border
-      width: calc(100vw - var(--margin-3) * 2)
-      margin-inline: auto
+      position: absolute
+      width: 100%
+      padding-inline: var(--margin-3)
+      z-index: 2
     // .first__key-item
     .first__key-item__lead
       +text(14rem, regular, $family-bio)
@@ -34,29 +34,30 @@
       +text(44rem, book, $family-bodoni)
       margin-top: 24rem
       line-height: 1.3
+      +gap(bottom,0rem)
     .first__key-item__sub
       +text(14rem, regular, $family)
       letter-spacing: -0.02em
       margin-top: 24rem
-    .first__bottom
-      position: relative
-      width: calc(100vw - var(--margin-3) * 2)
-      margin-inline: auto
+      width: 100%
+    .first__key-link
       height: 49rem
+      width: fit-content
       margin-top: 72rem
-    .first__collection-link
-      position: absolute
-      top: 0
-      bottom: 0
-      left: 0
-      height: 100%
       padding-inline: 21rem
+      display: inline-block
       color: var(--color-black-100)
       +flex-middle
       +text(14rem, medium, $family)
       --start-color: #B0B0B0
       --middle-color: #c7d0da
       --end-color: var(--color-white-100)
+    .first__bottom
+      position: relative
+      width: calc(100vw - var(--margin-3) * 2)
+      margin-inline: auto
+      height: 49rem
+      margin-top: 72rem
     .first__scroll
       +size(fit-content)
       +absolute-middle
@@ -106,7 +107,14 @@
       width: 100%
     .first__progress__count
       +text(32rem, book, $family-bodoni)
-    // .first__progress__count-big
+      position: relative
+      overflow: hidden
+      padding-left: 15rem
+    .first__progress__count-big
+      +gap(bottom, 0rem)
+      // overflow: hidden
+      left: 0
+      position: absolute
     .first__progress__count-small
       font-size: 22rem
   .about

@@ -449,7 +449,7 @@ section {
   width: 100vw;
 }
 
-.p-index {
+.container {
   min-height: 100vh;
   position: relative;
   max-width: 100vw;
@@ -478,6 +478,10 @@ section {
   [sp-only] {
     display: none !important;
   }
+}
+
+.gs-dev-tools {
+  z-index: 9999;
 }
 
 .tutorial {
@@ -1204,8 +1208,9 @@ section {
   max-height: 900rem;
   position: relative;
   color: var(--color-white-100);
+  overflow: hidden;
 }
-[top-page] .first .first__front, [top-page] .first .first__back {
+[top-page] .first .first__info, [top-page] .first .first__visual {
   position: absolute;
   top: 0;
   right: 0;
@@ -1215,7 +1220,7 @@ section {
   width: 100%;
   height: 100%;
 }
-[top-page] .first .first__front {
+[top-page] .first .first__info {
   z-index: 1;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1229,13 +1234,15 @@ section {
           justify-content: flex-end;
   padding-bottom: 120rem;
 }
-[top-page] .first .first__back {
+[top-page] .first .first__visual {
   background: var(--color-navy-100);
 }
 [top-page] .first .first__key {
-  width: calc(100vw - var(--margin-3) * 2);
-  margin-left: auto;
-  margin-right: auto;
+  position: absolute;
+  width: 100%;
+  padding-left: var(--margin-3);
+  padding-right: var(--margin-3);
+  z-index: 2;
 }
 [top-page] .first .first__key-item__lead {
   font-size: 14rem;
@@ -1252,6 +1259,30 @@ section {
   line-height: 1;
   margin-top: 24rem;
   line-height: 1.3;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 0rem;
+}
+@supports not (aspect-ratio: 16/9) {
+  [top-page] .first .first__key-item__title {
+    gap: 0px;
+  }
+  [top-page] .first .first__key-item__title > *:not(:last-child) {
+    margin-bottom: 0rem;
+  }
+}
+@media all and (-ms-high-contrast: none) {
+  [top-page] .first .first__key-item__title {
+    gap: 0px;
+  }
+  [top-page] .first .first__key-item__title > *:not(:last-child) {
+    margin-bottom: 0rem;
+  }
 }
 [top-page] .first .first__key-item__sub {
   font-size: 14rem;
@@ -1261,23 +1292,17 @@ section {
   letter-spacing: -0.02em;
   letter-spacing: -0.02em;
   margin-top: 24rem;
+  width: 100%;
 }
-[top-page] .first .first__bottom {
-  position: relative;
-  width: calc(100vw - var(--margin-3) * 2);
-  margin-left: auto;
-  margin-right: auto;
+[top-page] .first .first__key-link {
   height: 49rem;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
   margin-top: 72rem;
-}
-[top-page] .first .first__collection-link {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  height: 100%;
   padding-left: 21rem;
   padding-right: 21rem;
+  display: inline-block;
   color: var(--color-black-100);
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1296,6 +1321,14 @@ section {
   --start-color: #B0B0B0;
   --middle-color: #c7d0da;
   --end-color: var(--color-white-100);
+}
+[top-page] .first .first__bottom {
+  position: relative;
+  width: calc(100vw - var(--margin-3) * 2);
+  margin-left: auto;
+  margin-right: auto;
+  height: 49rem;
+  margin-top: 72rem;
 }
 [top-page] .first .first__scroll {
   width: -webkit-fit-content;
@@ -1472,6 +1505,37 @@ section {
   font-family: ltc-bodoni-175, "Yu Gothic Medium", "Yu Gothic", YuGothic, "A+EqpB-游ゴシック体 Pr6N M", selif;
   font-weight: 400;
   line-height: 1;
+  position: relative;
+  overflow: hidden;
+  padding-left: 15rem;
+}
+[top-page] .first .first__progress__count-big {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 0rem;
+  left: 0;
+  position: absolute;
+}
+@supports not (aspect-ratio: 16/9) {
+  [top-page] .first .first__progress__count-big {
+    gap: 0px;
+  }
+  [top-page] .first .first__progress__count-big > *:not(:last-child) {
+    margin-bottom: 0rem;
+  }
+}
+@media all and (-ms-high-contrast: none) {
+  [top-page] .first .first__progress__count-big {
+    gap: 0px;
+  }
+  [top-page] .first .first__progress__count-big > *:not(:last-child) {
+    margin-bottom: 0rem;
+  }
 }
 [top-page] .first .first__progress__count-small {
   font-size: 22rem;
