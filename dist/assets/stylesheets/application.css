@@ -912,7 +912,6 @@ section {
 
 .base-footer {
   width: 100vw;
-  padding-bottom: 100vw;
 }
 .base-footer .base-footer-crumbs {
   width: 100vw;
@@ -975,6 +974,12 @@ section {
   background: var(--color-navy-100);
   padding: 63rem var(--margin-2) 73rem;
   color: var(--color-white-100);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 .base-footer .base-footer-nav .base-footer-nav__list {
   font-size: 12rem;
@@ -996,6 +1001,197 @@ section {
   line-height: inherit;
   color: inherit;
   letter-spacing: inherit;
+}
+@media (min-width: 751px) {
+  .base-footer .base-footer-buttons {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: end;
+        -ms-flex-align: end;
+            align-items: flex-end;
+  }
+}
+.base-footer .base-footer-buttons__row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  gap: 12rem;
+}
+@supports not (aspect-ratio: 16/9) {
+  .base-footer .base-footer-buttons__row {
+    gap: 0px;
+  }
+  .base-footer .base-footer-buttons__row > *:not(:last-child) {
+    margin-right: 12rem;
+  }
+}
+@media all and (-ms-high-contrast: none) {
+  .base-footer .base-footer-buttons__row {
+    gap: 0px;
+  }
+  .base-footer .base-footer-buttons__row > *:not(:last-child) {
+    margin-right: 12rem;
+  }
+}
+.base-footer .base-footer-buttons__item {
+  width: 220rem;
+  height: 49rem;
+  border: 1px solid rgba(255, 255, 255, 0.3019607843);
+  display: inline-block;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  gap: 10rem;
+  font-size: 11rem;
+  font-family: "Yu Gothic Medium", "Yu Gothic", YuGothic, "A+EqpB-游ゴシック体 Pr6N M", selif;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+@supports not (aspect-ratio: 16/9) {
+  .base-footer .base-footer-buttons__item {
+    gap: 0px;
+  }
+  .base-footer .base-footer-buttons__item > *:not(:last-child) {
+    margin-right: 10rem;
+  }
+}
+@media all and (-ms-high-contrast: none) {
+  .base-footer .base-footer-buttons__item {
+    gap: 0px;
+  }
+  .base-footer .base-footer-buttons__item > *:not(:last-child) {
+    margin-right: 10rem;
+  }
+}
+.base-footer .base-footer-buttons__item svg {
+  width: 17rem;
+  height: auto;
+}
+.base-footer .base-footer-buttons__item svg path {
+  stroke: var(--color-white-100);
+}
+.base-footer .base-footer-buttons__icons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  gap: 8rem;
+}
+@supports not (aspect-ratio: 16/9) {
+  .base-footer .base-footer-buttons__icons {
+    gap: 0px;
+  }
+  .base-footer .base-footer-buttons__icons > *:not(:last-child) {
+    margin-right: 8rem;
+  }
+}
+@media all and (-ms-high-contrast: none) {
+  .base-footer .base-footer-buttons__icons {
+    gap: 0px;
+  }
+  .base-footer .base-footer-buttons__icons > *:not(:last-child) {
+    margin-right: 8rem;
+  }
+}
+.base-footer .base-footer-buttons__icons__button {
+  width: 48rem;
+  height: 48rem;
+  border: 1px solid rgba(255, 255, 255, 0.3019607843);
+  border-radius: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.base-footer .base-footer-bottom {
+  padding-left: var(--margin-2);
+  padding-right: var(--margin-2);
+  min-height: 111rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.base-footer .base-footer-bottom-nav {
+  font-size: 12rem;
+  font-family: bio-sans, "Yu Gothic Medium", "Yu Gothic", YuGothic, "A+EqpB-游ゴシック体 Pr6N M", selif;
+  line-height: 1;
+  letter-spacing: 0em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  gap: 44rem;
+}
+@supports not (aspect-ratio: 16/9) {
+  .base-footer .base-footer-bottom-nav {
+    gap: 0px;
+  }
+  .base-footer .base-footer-bottom-nav > *:not(:last-child) {
+    margin-right: 44rem;
+  }
+}
+@media all and (-ms-high-contrast: none) {
+  .base-footer .base-footer-bottom-nav {
+    gap: 0px;
+  }
+  .base-footer .base-footer-bottom-nav > *:not(:last-child) {
+    margin-right: 44rem;
+  }
+}
+.base-footer .base-footer-bottom-nav a {
+  font-size: inherit;
+  font-family: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  color: inherit;
+  letter-spacing: inherit;
+}
+.base-footer .base-footer-bottom__copylight {
+  font-size: 12rem;
+  font-family: bio-sans, "Yu Gothic Medium", "Yu Gothic", YuGothic, "A+EqpB-游ゴシック体 Pr6N M", selif;
+  line-height: 1;
 }
 
 [top-page] {

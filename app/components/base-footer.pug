@@ -19,10 +19,24 @@ footer.base-footer
       a(href="#") 特定商取引法に基づく表記
       a(href="#") お問合せ
     .base-footer-buttons
-      a.base-footer-buttons__item(href="#")
-        span ログイン/登録
-        include ../assets/svg/icon_user.svg
-      a.base-footer-buttons__item(href="#")
-        span ログイン/登録
-        include ../assets/svg/icon_user.svg
+      .base-footer-buttons__row
+        a.base-footer-buttons__item(href="#")
+          span ログイン/登録
+          include ../assets/svg/icon_user.svg
+        a.base-footer-buttons__item(href="#")
+          span ログイン/登録
+          include ../assets/svg/icon_cart.svg
+      .base-footer-buttons__icons
+        a.base-footer-buttons__icons__button(href="#")
+          include ../assets/svg/icon_instagram.svg
+        a.base-footer-buttons__icons__button(href="#")
+          include ../assets/svg/icon_twitter.svg
+        a.base-footer-buttons__icons__button(href="#")
+          include ../assets/svg/icon_instagram.svg
   .base-footer-bottom
+    include ../assets/svg/logo_inline.svg
+    .base-footer-bottom-nav
+      a(href="#") COMPANU INFO
+      a(href="#") CONTACT
+      a(href="#") PRIVACY POLICY
+    p.base-footer-bottom__copylight © PHILIP STEIN JAPAN All rights reserved.
