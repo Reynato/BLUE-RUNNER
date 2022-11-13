@@ -30,7 +30,7 @@ export default class App {
     this.firstScrollPartsDirection();
     this.firstSlide();
     // first section pallax
-    gsap.to(".first__info", {
+    gsap.to(".first__info, .first__visual", {
       startAt: {
         y: 0,
         opacity: 1,
@@ -119,11 +119,13 @@ export default class App {
     // animation
     // const tl = gsap.timeline({});
     // console.log(randomId());
-    const firstKeyArray = $$(".first__key");
-    const slideTl = Array.from(firstKeyArray).map((key, index) => {
+    const keyArray = $$(".first__key");
+    const barArray = $$(".first__progress__item-child");
+    const imageArray = $$(".first__visual__image");
+    const slideTl = Array.from(keyArray).map((key, index) => {
       const tl = gsap.timeline();
-      const nextKey = firstKeyArray[index + 1] ? firstKeyArray[index + 1] : firstKeyArray[0];
-
+      const nextKey = keyArray[index + 1] ? keyArray[index + 1] : keyArray[0];
+      const nextImage = imageArray[index + 1] ? imageArray[index + 1] : imageArray[0];
       const firstTextEl = [
         ...$$(".first__key-item__lead", key),
         ...$$(".first__key-item__title--line", key),
@@ -135,11 +137,29 @@ export default class App {
         ...$$(".first__key-item__sub", nextKey),
       ];
 
+      tl.call(() => {
+        console.log(index);
+      });
+
+      // progress delay
+      tl.to(barArray[index], {
+        duration: 3, // ここでスライドの待ち時間を調整
+        clipPath: "inset(0 0% 0 0%)",
+      });
       // hide
       tl.set(firstTextEl, {
         clipPath: "inset(0% 0 0 0)",
         y: "0%",
+        delay: 0,
       });
+      tl.to(
+        barArray[index],
+        {
+          duration: 0.5,
+          clipPath: "inset(0 0% 0 100%)",
+        },
+        "hide"
+      );
       tl.to(
         firstTextEl,
         {
@@ -161,15 +181,11 @@ export default class App {
         "hide"
       );
 
-      // count
-      const countHeight = $(".first__progress__count-big span").getBoundingClientRect().height;
-      tl.to(".first__progress__count-big", {
-        y: -countHeight * (index + 1),
-        duration: 1,
-        ease: "power4.out",
-      });
-
       // show
+      tl.call(() => {
+        $$(".first__key").forEach((el) => (el.style.pointerEvents = "none"));
+        nextKey.style.pointerEvents = "auto";
+      });
 
       tl.set(nextFirstTextEl, {
         clipPath: "inset(0 0 100% 0)",
@@ -206,6 +222,37 @@ export default class App {
         },
         "show"
       );
+      // count
+      const countHeight = $(".first__progress__count-big span").getBoundingClientRect().height;
+      tl.to(
+        ".first__progress__count-big",
+        {
+          y: -countHeight * (index + 1),
+          duration: 1,
+          ease: "power4.out",
+        },
+        "show"
+      );
+
+      // image fadein
+      tl.to(
+        nextImage,
+        {
+          startAt: {
+            opacity: 0,
+            scale: 1.2,
+            zIndex: 10,
+          },
+          scale: 1,
+          opacity: 1,
+          duration: 2,
+          ease: "power2.out",
+        },
+        "show"
+      );
+      tl.set(nextImage, {
+        zIndex: 9,
+      });
 
       return tl;
     });

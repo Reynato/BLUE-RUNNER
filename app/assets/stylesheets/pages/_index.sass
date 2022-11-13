@@ -8,6 +8,7 @@
     position: relative
     color: var(--color-white-100)
     overflow: hidden
+    background: var(--color-black-100)
     .first__info, .first__visual
       +absolute-middle
       +size(100%)
@@ -19,6 +20,9 @@
       padding-bottom: 120rem
     .first__visual
       background: var(--color-navy-100)
+    .first__visual__image
+      +absolute-middle
+      +size(100%)
 
     .first__key
       position: absolute
@@ -105,6 +109,11 @@
       background: #fff6
       height: 1px
       width: 100%
+    .first__progress__item-child
+      background: var(--color-white-100)
+      height: 100%
+      width: 100%
+      clip-path: inset(0 100% 0 0%)
     .first__progress__count
       +text(32rem, book, $family-bodoni)
       position: relative
