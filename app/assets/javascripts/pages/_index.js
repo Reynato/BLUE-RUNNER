@@ -266,9 +266,9 @@ export default class App {
     tl.add(slideTl[2]);
 
     // slideTl[0].play();
-    GSDevTools.create({
-      animation: tl,
-    });
+    // GSDevTools.create({
+    //   animation: tl,
+    // });
   }
   reviewDirection() {
     // スクロールの動き
