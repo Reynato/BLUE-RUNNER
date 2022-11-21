@@ -1,0 +1,72 @@
+.base-header
+  position: fixed
+  top: 40rem
+  z-index: 10
+  width: 100vw
+  padding-inline: var(--margin-1)
+  display: flex
+  justify-content: space-between
+  align-items: center
+  .base-header__logo svg
+    width: 199rem
+    height: auto
+  .base-header__menu
+    +gap(right, 40rem)
+    +absolute-middle
+    +size(fit-content)
+  .base-header__menu__item
+    +text(16rem, book, $family-bodoni)
+  .base-header__nav
+    +gap(right, 0rem)
+  .base-header__nav__item
+    +gap(right,10rem)
+    align-items: center
+    margin-left: 20rem
+  .base-header__nav__item-count
+    +size(22rem)
+    background: var(--color-white-100)
+    +flex-middle
+    border: 1px solid #1a1a1a33
+    border-radius: 100%
+    +text(10rem, regular, $family-bio)
+    span
+      transform: translateY(-1rem)
+  .base-header__nav__item-button
+    +size(27rem)
+    display: flex
+    flex-direction: column
+    justify-content: space-evenly
+    margin-left: 38rem
+  .base-header__nav__item-bar
+    width: 100%
+    height: 1px
+    background: var(--color-black-100)
+    display: inline-block
+  
+
+  // transition
+  .logo_inline, .icon_cart, .icon_user
+    path
+      transition: fill 0.3s ease
+  .base-header__menu__item
+    transition: color 0.3s ease
+  .base-header__nav__item
+    span
+      transition: color 0.3s ease
+  .base-header__nav__item-count
+    span
+      transition: color 0.3s ease
+  .base-header__nav__item-bar
+    transition: background 0.3s ease
+  // animation
+  &[header-white]
+    .logo_inline, .icon_cart, .icon_user
+      path
+        fill: var(--color-white-100)
+    .base-header__menu__item, .base-header__nav__item
+      color: var(--color-white-100)
+    .base-header__nav__item-count
+      color: var(--color-black-100)
+    .base-header__nav__item-bar
+      background: var(--color-white-100)
+    

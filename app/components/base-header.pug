@@ -1,0 +1,20 @@
+.base-header(header-white)
+  a.base-header__logo(href="#")
+    include ../assets/svg/logo_inline.svg
+  .base-header__menu
+    a.base-header__menu__item(href="#") ABOUT
+    a.base-header__menu__item(href="#") COLLECTION
+    a.base-header__menu__item(href="#") COLUMN
+    a.base-header__menu__item(href="#") SHOPLIST
+  .base-header__nav
+    a.base-header__nav__item(href="#")
+      span ログイン/登録
+      include ../assets/svg/icon_user.svg
+    a.base-header__nav__item(href="#")
+      span マイバック
+      include ../assets/svg/icon_cart.svg
+      .base-header__nav__item-count
+        span 0
+    button.base-header__nav__item-button
+      span.base-header__nav__item-bar
+      span.base-header__nav__item-bar

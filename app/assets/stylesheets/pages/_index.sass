@@ -1,3 +1,439 @@
 [top-page]
-  +flex-middle
-  padding-top: 200rem
+  position: relative
+  .first
+    height: 100vh
+    height: 100svh
+    width: 100vw
+    max-height: 900rem
+    position: relative
+    color: var(--color-white-100)
+    overflow: hidden
+    background: var(--color-black-100)
+    .first__info, .first__visual
+      +absolute-middle
+      +size(100%)
+    .first__info
+      z-index: 1
+      display: flex
+      flex-direction: column
+      justify-content: flex-end
+      padding-bottom: 120rem
+    .first__visual
+      background: var(--color-navy-100)
+    .first__visual__image
+      +absolute-middle
+      +size(100%)
+
+    .first__key
+      position: absolute
+      width: 100%
+      padding-inline: var(--margin-3)
+      z-index: 2
+    // .first__key-item
+    .first__key-item__lead
+      +text(14rem, regular, $family-bio)
+      text-transform: uppercase
+      opacity: 0.74
+    .first__key-item__title
+      +text(44rem, book, $family-bodoni)
+      margin-top: 24rem
+      line-height: 1.3
+      +gap(bottom,0rem)
+    .first__key-item__sub
+      +text(14rem, regular, $family)
+      letter-spacing: -0.02em
+      margin-top: 24rem
+      width: 100%
+    .first__key-link
+      height: 49rem
+      width: fit-content
+      margin-top: 72rem
+      padding-inline: 21rem
+      display: inline-block
+      color: var(--color-black-100)
+      +flex-middle
+      +text(14rem, medium, $family)
+      --start-color: #B0B0B0
+      --middle-color: #c7d0da
+      --end-color: var(--color-white-100)
+    .first__bottom
+      position: relative
+      width: calc(100vw - var(--margin-3) * 2)
+      margin-inline: auto
+      height: 49rem
+      margin-top: 72rem
+    .first__scroll
+      +size(fit-content)
+      +absolute-middle
+      margin: auto
+      +gap(bottom, 20rem)
+      align-items: center
+    .first__scroll__bar
+      position: absolute
+      left: 0
+      right: 0
+      margin: auto
+      top: 50%
+      transform: translateY(-50%)
+      height: 178rem
+      width: 1rem
+      background: #ffffff1a
+      --top-num: 55rem
+      --bottom-num: calc(100% - 55rem)
+      clip-path: polygon(0% 0%, 0% 100%, 0 100%, 0 var(--top-num), 100% var(--top-num), 100% var(--bottom-num), 0 var(--bottom-num), 0 100%, 100% 100%, 100% 0%)
+
+    .first__scroll__bar-child
+      width: 100%
+      height: 3rem
+      background: var(--color-white-100)
+    .first__scroll__text
+      +text(12rem, regular, $family-bio)
+      +gap(bottom, 0rem)
+      height: 12rem
+      overflow: hidden 
+      justify-content: flex-end
+
+    .first__progress
+      +size(fit-content)
+      position: absolute
+      right: 0
+      top: 0
+      bottom: 0
+      margin: auto
+      +gap(right, 20rem)
+      align-items: center
+    .first__progress__wrap
+      width: 100rem
+      +gap(right, 7rem)
+    .first__progress__item
+      background: #fff6
+      height: 1px
+      width: 100%
+    .first__progress__item-child
+      background: var(--color-white-100)
+      height: 100%
+      width: 100%
+      clip-path: inset(0 100% 0 0%)
+    .first__progress__count
+      +text(32rem, book, $family-bodoni)
+      position: relative
+      overflow: hidden
+      padding-left: 15rem
+    .first__progress__count-big
+      +gap(bottom, 0rem)
+      // overflow: hidden
+      left: 0
+      position: absolute
+    .first__progress__count-small
+      font-size: 22rem
+  .about
+    padding-top: 100rem
+    // padding-inline: var(--margin-2)
+    +sp-view-over
+      padding-left: var(--margin-3)
+      padding-right: var(--margin-2)
+      display: flex
+      justify-content: space-between
+    .about__visual
+      max-width: 738rem
+      width: 100%
+      height: 620rem
+      // +test-border
+    .about__visual__image
+      height: 100%
+      --gap: 138rem
+      width: calc(100% - var(--gap))
+    .about__message
+      margin-top: auto
+      margin-bottom: 33rem
+    .about__message__description
+      +text(15rem, medium, $family)
+      line-height: 2.4
+      letter-spacing: -0.02em
+      margin-top: 80rem
+    .about__message__link
+      width: 220rem
+      margin-top: 80rem
+  .collection
+    margin-top: 120rem
+    position: relative
+    display: flex
+    flex-direction: column
+    align-items: flex-start
+    +sp-view-over
+      padding-left: var(--margin-3)
+      padding-right: var(--margin-2)
+    .collection__title
+      +gap(right, 14rem)
+      position: absolute
+      left: var(--margin-1)
+      // position: 
+    .collection__title__main, .collection__title__sub
+      writing-mode: vertical-rl
+      line-height: 1
+    .collection__title__main
+      +text(40rem, book, $family-bodoni)
+      letter-spacing: 0.02em
+    .collection__title__sub
+      +text(12rem, light, $family-bio)
+      letter-spacing: 0.02em
+      
+    .collection__slide
+      width: 100%
+      +gap(right, 25rem)
+    .collection__item
+      flex: 1
+      width: 100%
+    .collection__item__image
+      width: 100%
+      img
+        width: 100%
+        height: 506rem
+    .collection__item__text
+      +gap(right, 16rem)
+      align-items: center
+      margin-top: 10rem
+    .collection__item__title-main
+      +text(20rem, book, $family-bodoni)
+    .collection__item__title-sub
+      +text(11rem, medium, $family)
+      letter-spacing: -0.02em
+      opacity: 0.6
+    .collection__link
+      margin-left: auto
+      width: fit-content
+      text-decoration: underline
+      display: inline-block
+      +text(13rem, medium, $family)
+      letter-spacing: -0.02em
+      margin-top: 36rem
+  .review
+    height: 665rem
+    width: 100%
+    background: var(--color-beige-300)
+    margin-top: 120rem
+    --main-width: 1183rem
+    position: relative
+    +sp-view-over
+      padding-left: var(--main-width)
+      padding-top: 116rem
+      padding-bottom: 120rem
+      display: flex
+      justify-content: space-between
+      flex-direction: column
+      align-items: center
+    .review__title
+      h2,p
+        text-align: center
+    .review__main
+      width: var(--main-width)
+      height: 100%
+      background: var(--color-beige-100)
+      +sp-view-over
+        position: absolute
+        left: 0
+        top: 0
+        padding-left: var(--margin-2)
+        padding-right: 140rem
+    .review__scrollbar
+      height: 100%
+      width: 48rem
+      position: absolute
+      top: 0
+      right: 0
+      background: var(--color-beige-200)
+      +flex-middle
+    .review__scrollbar__box
+      width: 7rem
+      height: 440rem
+      background: var(--color-beige-100)
+      border-radius: 20rem
+      overflow: hidden
+    .review__scrollbar__thumb
+      width: 100%
+      height: 150rem
+      background: var(--color-black-100)
+      opacity: 0.2
+      border-radius: 20rem
+    .review__button
+      +text(12rem, regular, $family-bio)
+      letter-spacing: 0.02em
+      +gap(right, 12rem)
+      align-items: center
+      time
+        margin-bottom: 2rem
+        +text-inherit
+    .review__list-wrap
+      height: 100%
+      overflow-y: scroll
+    .review__list
+      padding-top: 129rem
+      padding-bottom: 129rem
+      +gap(bottom, 30rem)
+    .review__item
+      display: flex
+      justify-content: space-between
+      align-items: flex-start
+      padding-bottom: 30rem
+      border-bottom: 1px solid #1A1A1A4d
+      width: 100%
+      &[star="1"]
+        .review__item__header-star--fill .icon_star-fill:nth-child(n + 2)
+          opacity: 0
+      &[star="2"]
+        .review__item__header-star--fill .icon_star-fill:nth-child(n + 3)
+          opacity: 0
+      &[star="3"]
+        .review__item__header-star--fill .icon_star-fill:nth-child(n + 4)
+          opacity: 0
+      &[star="4"]
+        .review__item__header-star--fill .icon_star-fill:nth-child(n + 5)
+          opacity: 0
+      &[star="5"]
+        .review__item__header-star--fill .icon_star-fill:nth-child(n + 6)
+          opacity: 0
+    .review__item__header
+      max-width: 266rem
+      width: 100%
+      display: flex
+      justify-content: space-between
+      align-items: center
+    .review__item__header-user
+      +text(13rem, medium, $family)
+      letter-spacing: -0.02em
+      +gap(right, 14rem)
+      align-items: center
+      .icon_user-fill
+        +size(31rem)
+    .review__item__header-num
+      position: relative
+    .review__item__header-star
+      +gap(right, 3rem)
+      align-items: center
+      &--fill
+        position: absolute
+        z-index: 1
+        top: 0
+        bottom: 0
+        left: -1rem
+      .icon_star-empty, .icon_star-fill
+        width: 13rem
+        height: auto
+    .review__item__body
+      max-width: 500rem
+      margin-top: 5rem
+    .review__item__body-title
+      +text(12rem, medium, $family)
+      line-height: 1.7
+      // +text-overflow(1)
+    .review__item__body-main
+      // padding-top: 
+      height: fit-content
+      // max-height: 0rem
+      overflow: hidden
+    .review__item__body-main-text
+      padding-top: 20rem
+      +text(11rem, regular, $family)
+      line-height: 1.7
+    .review__item__bottom
+      max-width: 91rem
+      width: 100%
+      display: flex
+      justify-content: space-between
+      margin-top: 9rem
+    .review__item__bottom-category
+      +text(11rem, medium, $family)
+      line-height: 1
+    .review__item__bottom-text
+      +text(10rem, medium, $family)
+      line-height: 1
+      opacity: 0.6
+
+    // transition
+    .review__item__body-main
+      transition: max-height 0.5s ease
+    // animation
+    .review__item:not([item-open])
+      .review__item__body-title
+        +text-overflow(1)
+    .review__item[item-open]
+      .review__item__body-title
+        // +text-overflow(99)
+      .review__item__body-main
+        max-height: var(--height) !important
+  .column
+    margin-top: 120rem
+    .column__title
+      text-align: center
+    .column__wrap
+      width: 100vw
+      margin-top: 58rem
+      padding-inline: var(--margin-3)
+      +gap(right, 38rem)
+    .parts-card
+      flex: 1
+    .column__link
+      width: fit-content
+      margin-left: auto
+      display: block
+      margin-right: var(--margin-2)
+      margin-top: 30rem
+      text-decoration: underline
+      +text(13rem, medium, $family)
+  .news
+    margin-top: 120rem
+    background: var(--color-gray-200)
+    position: relative
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: space-between
+    padding-top: 87rem
+    padding-bottom: 83rem
+    min-height: 317rem
+    +sp-view-over
+      padding-right: calc(100vw - 257rem)
+    .news__title
+      text-align: center
+    .news__link
+      text-decoration: underline
+      +text(13rem, medium, $family)
+    .news__wrap
+      position: absolute
+      width: calc(100vw - 257rem)
+      height: 100%
+      right: 0
+      top: 0
+      background: var(--color-gray-100)
+      padding-inline: var(--margin-2)
+      padding-top: 87rem
+      // padding-bottom: 78rem
+      +gap(bottom, 19rem)
+    .news__item
+      padding-bottom: 17rem
+      border-bottom: 1px solid #1A1A1A4d
+      display: flex
+      align-items: center
+      justify-content: space-between
+      +gap(right, 25rem)
+      padding-bottom: 15rem
+    .news__item__date
+      +text(12rem, light, $family-bilo)
+    .news__item__title
+      flex: 1
+      width: 100%
+      +text(12rem, medium, $family)
+      line-height: 1
+      +text-overflow(1)
+    .news__item__category-wrap
+      width: 68rem
+      +flex-middle
+    .news__item__category
+      color: var(--color-white-100)
+      +text(11rem, medium, $family)
+      width: fit-content
+      padding-inline: 12rem
+      line-height: 21rem
+      background: var(--color-beige-100)
+
+

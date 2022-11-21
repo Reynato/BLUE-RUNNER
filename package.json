@@ -19,7 +19,7 @@
     "esbuild": "^0.15.8",
     "figlet": "^1.5.2",
     "fs-extra": "^10.1.0",
-    "gsap": "^3.10.4",
+    "gsap": "npm:@gsap/shockingly@^3.11.3",
     "jstransformer-markdown-it": "^3.0.0",
     "make-dir": "^3.1.0",
     "multi-stage-sourcemap": "^0.3.1",
