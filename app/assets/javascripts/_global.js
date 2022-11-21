@@ -47,8 +47,8 @@ export const $$ = (selector, el) => {
 };
 
 export const randomId = () => {
-  const LENGTH = 3;
-  const SOURCE = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  const LENGTH = 4;
+  const SOURCE = "abcdefghijklmnopqrstuvwxyz0123456789";
   let result = "";
 
   for (let i = 0; i < LENGTH; i++) {
