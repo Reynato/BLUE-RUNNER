@@ -109,7 +109,7 @@ class Task {
       }
     );
   }
-
+  // Directory Settigns
   rmDist() {
     try {
       fs.rmSync(dist.root, { recursive: true, force: true });
@@ -127,52 +127,51 @@ class Task {
   cpStatic() {
     fse.copy(src.static, dist.root).then(() => console.log(`${label} Moved static files`));
   }
+  // Pug to HTML
   singleCompilePug(data) {
     const file = data.replace(/^.*[\\\/]/, "");
     if (data.match(/components/) || data.match(/layouts/)) {
       this.compilePug();
       return;
     }
-    pug.renderFile(`${src.pug}/${file}`, (err, html) => {
-      if (err === null) {
-        fs.writeFile(`${dist.html}/${file.replace(/\.pug$/, ".html")}`, html, (err) => {
-          if (err) throw err;
-          console.log(`${label} Generate ${file.replace(/\.pug$/, ".html")}`);
-          const htmlFile = file.replace(/\.pug$/, ".html");
-        });
-      } else {
-        // console.clear();
-        console.log("\n\nPug Error --------------");
-        console.log(err);
-        console.log("-------------------------\n\n");
-      }
-    });
+
+    try {
+      const html = pug.renderFile(`${src.pug}/${file}`, {
+        compileDebug: true,
+      });
+      fs.writeFile(`${dist.html}/${file.replace(/\.pug$/, ".html")}`, html, (err) => {
+        if (err) throw err;
+        console.log(`${label} Generate ${file.replace(/\.pug$/, ".html")}`);
+        file.replace(/\.pug$/, ".html");
+      });
+    } catch (err) {
+      console.log("\n\nPug Error --------------");
+      console.log(error);
+      console.log("-------------------------\n\n");
+    }
   }
   compilePug(generate = true) {
     fs.readdir(src.pug, (err, files) => {
       if (err) throw err;
       files.forEach((file) => {
-        const html = pug.renderFile(`${src.pug}/${file}`, (err, html) => {
-          if (err === null) {
-            fs.writeFile(`${dist.html}/${file.replace(/\.pug$/, ".html")}`, html, (err) => {
-              if (err) throw err;
-              console.log(`${label} Generate ${color.magenta(file.replace(/\.pug$/, ".html"))}`);
-              const htmlFile = file.replace(/\.pug$/, ".html");
-              if (generate) {
-                this.prettierHtml(`${dist.html}/${htmlFile}`);
-              }
-            });
-          } else {
-            console.clear();
-            console.log("\n\nPug Error --------------");
-            console.log(err);
-            console.log("-------------------------\n\n");
-          }
-        });
+        try {
+          const html = pug.renderFile(`${src.pug}/${file}`, {
+            compileDebug: true,
+          });
+          fs.writeFile(`${dist.html}/${file.replace(/\.pug$/, ".html")}`, html, (err) => {
+            if (err) throw err;
+            console.log(`${label} Generate ${file.replace(/\.pug$/, ".html")}`);
+            const htmlFile = file.replace(/\.pug$/, ".html");
+            if (generate) this.prettierHtml(`${dist.html}/${htmlFile}`);
+          });
+        } catch (err) {
+          console.log("\n\nPug Error --------------");
+          console.log(error);
+          console.log("-------------------------\n\n");
+        }
       });
     });
   }
-
   prettierHtml(file) {
     fs.readFile(file, (err, data) => {
       if (err) throw err;
@@ -187,6 +186,7 @@ class Task {
       });
     });
   }
+  // SASS to CSS
   compileSass() {
     makeDir(dist.css).then((path) => {
       fs.readdir(src.sass, (err, files) => {
@@ -194,23 +194,22 @@ class Task {
         files.forEach((file) => {
           if (!file.match(/\.sass$/)) return;
 
-          const css = sass
-            .compileAsync(`${src.sass}/${file}`, {
+          try {
+            const css = sass.compile(`${src.sass}/${file}`, {
               sourceMap: true,
-            })
-            .then((css) => {
-              const sassMap = JSON.stringify(css.sourceMap);
-              fs.writeFile(`${dist.css}/${file.replace(/\.sass$/, ".css")}`, css.css, (err) => {
-                if (err) throw err;
-                console.log(`${label} Generate ${color.magenta(file.replace(/\.sass$/, ".css"))}`);
-                this.postCssWrite(`${dist.css}/${file.replace(/\.sass$/, ".css")}`, sassMap);
-              });
-            })
-            .catch((err) => {
-              console.log("\n\nSass Error --------------");
-              console.log(err);
-              console.log("-------------------------\n\n");
+              sourceMapIncludeSources: true,
             });
+            const sassMap = JSON.stringify(css.sourceMap);
+            fs.writeFile(`${dist.css}/${file.replace(/\.sass$/, ".css")}`, css.css, (err) => {
+              if (err) throw err;
+              console.log(`${label} Generate ${color.magenta(file.replace(/\.sass$/, ".css"))}`);
+              this.postCssWrite(`${dist.css}/${file.replace(/\.sass$/, ".css")}`, sassMap);
+            });
+          } catch (err) {
+            console.log("\n\nSass Error --------------");
+            console.log(err);
+            console.log("-------------------------\n\n");
+          }
         });
       });
     });
@@ -247,13 +246,13 @@ class Task {
         });
     });
   }
+  // JavaScript Build
   compileJs() {
     makeDir(dist.js).then((path) => {
       fs.readdir(`${src.js}/`, (err, files) => {
         if (err) throw err;
         files.forEach((file) => {
-          if (file.match(/_/)) return;
-          if (!file.match(/\.js$/)) return;
+          if (!file.match(/\.js$/) || file.match(/_/)) return;
           esbuild
             .build({
               entryPoints: [`${src.js}/${file}`],
