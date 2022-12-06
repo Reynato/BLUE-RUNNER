@@ -157,6 +157,7 @@ class Task {
         try {
           const html = pug.renderFile(`${src.pug}/${file}`, {
             compileDebug: true,
+            pretty: generate,
           });
           fs.writeFile(`${dist.html}/${file.replace(/\.pug$/, ".html")}`, html, (err) => {
             if (err) throw err;
@@ -166,7 +167,7 @@ class Task {
           });
         } catch (err) {
           console.log("\n\nPug Error --------------");
-          console.log(error);
+          console.log(err);
           console.log("-------------------------\n\n");
         }
       });
@@ -175,15 +176,22 @@ class Task {
   prettierHtml(file) {
     fs.readFile(file, (err, data) => {
       if (err) throw err;
-      const formatted = prettier.format(data.toString(), {
-        width: 100,
-        parser: "html",
-        htmlWhitespaceSensitivity: "ignore",
-      });
-      fs.writeFile(file, formatted, (err) => {
-        if (err) throw err;
-        console.log(`${label} Prettier ${color.magenta(file)}`);
-      });
+      try {
+        const formatted = prettier.format(data.toString(), {
+          width: 100,
+          parser: "html",
+          htmlWhitespaceSensitivity: "ignore",
+        });
+
+        fs.writeFile(file, formatted, (err) => {
+          if (err) throw err;
+          console.log(`${label} Prettier ${color.magenta(file)}`);
+        });
+      } catch (err) {
+        console.log("\n\nPug Error --------------");
+        console.log(err);
+        console.log("-------------------------\n\n");
+      }
     });
   }
   // SASS to CSS
