@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../app/assets/javascripts/application.js"],
-  "sourcesContent": ["window.addEventListener(\"DOMContentLoaded\", () => {\n  console.log(\"Hello\");\n  console.log(\"This is Task runner\");\n});\n"],
-  "mappings": "MAAA,OAAO,iBAAiB,mBAAoB,IAAM,CAChD,QAAQ,IAAI,OAAO,EACnB,QAAQ,IAAI,qBAAqB,CACnC,CAAC",
-  "names": []
-}
