@@ -82,3 +82,7 @@ sw.*
 
 # Vim swap files
 *.swp
+
+.npmrc
+
+dist
