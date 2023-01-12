@@ -3,7 +3,10 @@ doctype
 html(lang="ja")
   head
     meta(charset="utf-8")
-    meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no')
+    meta(
+      name="viewport",
+      content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"
+    )
 
     - title = "タイトル";
     - description = "ディスクリプション";
@@ -11,40 +14,42 @@ html(lang="ja")
     - og_image = site_url + "/ogp.jpg";
     - color = "#ffffff";
 
-    title=title
+    title= title
 
-    meta(name="description" content=description)
+    meta(name="description", content=description)
 
-    meta(property="og:locale" content="ja_JP")
-    meta(property="og:title" content=title)
-    meta(property="og:type" content="website")
-    meta(property="og:url" content=site_url)
-    meta(property="og:description" content=description)
-    meta(property="og:site_name" content=title)
-    meta(property="og:image" content=og_image)
-    meta(property="og:image:secure_url" content=og_image)
-    meta(property="og:image:width" content="1200")
-    meta(property="og:image:height" content="620")
-    meta(name="twitter:card" content="summary_large_image")
-    meta(name="twitter:description" content=description)
-    meta(name="twitter:title" content=title)
-    meta(name="twitter:image" content=og_image)
+    meta(property="og:locale", content="ja_JP")
+    meta(property="og:title", content=title)
+    meta(property="og:type", content="website")
+    meta(property="og:url", content=site_url)
+    meta(property="og:description", content=description)
+    meta(property="og:site_name", content=title)
+    meta(property="og:image", content=og_image)
+    meta(property="og:image:secure_url", content=og_image)
+    meta(property="og:image:width", content="1200")
+    meta(property="og:image:height", content="620")
+    meta(name="twitter:card", content="summary_large_image")
+    meta(name="twitter:description", content=description)
+    meta(name="twitter:title", content=title)
+    meta(name="twitter:image", content=og_image)
 
-    link(rel="icon" type="image/x-icon" href=`${site_url}/favicon.ico`)
-    link(rel="shortcut icon" type="image/x-icon" href=`${site_url}/favicon/favicon.ico`)
-    meta(name="msapplication-TileColor" content=color)
-    meta(name="theme-color" content=color)
+    link(rel="icon", type="image/x-icon", href=`${site_url}/favicon.ico`)
+    link(rel="shortcut icon", type="image/x-icon", href=`${site_url}/favicon/favicon.ico`)
+    meta(name="msapplication-TileColor", content=color)
+    meta(name="theme-color", content=color)
     script(src="./assets/javascripts/basicAuth.js")
-    link(rel='preconnect' href='https://fonts.googleapis.com')
-    link(rel='preconnect' href='https://fonts.gstatic.com' crossorigin='')
-    link(href='https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap' rel='stylesheet')
-    link(rel="stylesheet" href="/assets/stylesheets/application.css")
-    link(rel="stylesheet" href="/assets/stylesheets/application.css.map")
-
-
+    link(rel="preconnect", href="https://fonts.googleapis.com")
+    link(rel="preconnect", href="https://fonts.gstatic.com", crossorigin="")
+    link(
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap",
+      rel="stylesheet"
+    )
+    link(rel="stylesheet", href="/assets/stylesheets/application.css")
+    link(rel="stylesheet", href="/assets/stylesheets/application.css.map")
   body
     include ../components/debug-grid.pug
+    //- include ../components/base-header.pug
     main.l-content
       block content
     script(src="/assets/javascripts/application.js")
-    script(src="/assets/javascripts/application.js.map" type="application/json")
+    script(src="/assets/javascripts/application.js.map", type="application/json")
