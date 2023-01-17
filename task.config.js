@@ -146,7 +146,7 @@ class Task {
       });
     } catch (err) {
       console.log("\n\nPug Error --------------");
-      console.log(error);
+      console.log(err);
       console.log("-------------------------\n\n");
     }
   }
