@@ -262,3 +262,23 @@ $pc-lg-only-size: "(min-width: 1201px) and (max-width: 1580px)"
   width: 100%
   margin-left: auto
   margin-right: auto
+
+=slider-horizontal($gap: 20px, $margin: 20px, $snap: center)
+  --gap: 0rem
+  position: relative
+  width: 100vw
+  overflow: scroll
+  scroll-snap-type: x mandatory
+  +no-scrollbar
+  &::after, &::before
+    content: 'a'
+    opacity: 0
+    min-width: $margin
+    height: 100%
+    display: block
+    scroll-snap-align: start
+  & > *
+    scroll-snap-align: $snap
+    &:not(:last-child)
+      margin-right: $gap
+  
