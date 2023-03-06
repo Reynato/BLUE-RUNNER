@@ -85,5 +85,6 @@ sw.*
 
 .npmrc
 
+dist
 dist/*
 !dist/index.html

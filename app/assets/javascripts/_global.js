@@ -37,13 +37,27 @@ export const cssVal = (property) => {
 };
 
 export const $ = (selector, el) => {
-  if (!el) el = document;
-  return el.querySelector(selector);
+  if (!el) {
+    el = document;
+  }
+  const element = el.querySelector(selector);
+
+  if (element !== null) {
+    const rect = element.getBoundingClientRect();
+    element.width = rect.width;
+    element.height = rect.height;
+    element.x = rect.x;
+    element.y = rect.y;
+  }
+
+  return element;
 };
 
 export const $$ = (selector, el) => {
-  if (!el) el = document;
-  return el.querySelectorAll(selector);
+  if (!el) {
+    el = document;
+  }
+  return Array.from(el.querySelectorAll(selector));
 };
 
 export const randomId = () => {
