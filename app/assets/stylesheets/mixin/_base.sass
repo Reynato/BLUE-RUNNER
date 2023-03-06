@@ -16,12 +16,16 @@
 html
   min-height: 100%
   font-feature-settings: "palt" 1
+  font-size: calc(100 / var(--base-vw) * 1 * 1vw)
+  --max-width: 1580px
   +pc-sm-view-over
-    font-size: fvw(1px, 1440)
+    --base-vw: 1440
   +pc-sm-view 
-    font-size: fvw(1px,992)
+    --base-vw: 992
   +sp-view
-    font-size: fvw(1px,390)
+    --base-vw: 390
+  +pc-lg-view-over
+    font-size: 1px
     
     
 html,body
